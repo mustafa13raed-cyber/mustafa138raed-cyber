@@ -1,70 +1,155 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إمبراطورية العصر الفكتوري والألحان الهادئة 👑🎻</title>
+    <title id="pageTitle">كوكب زمرد - الإمبراطورية الملكية المفتوحة والنهائية 👑💎</title>
     <style>
         body {
-            background: linear-gradient(135deg, #2c161c, #4a2330, #1f1117);
+            background: linear-gradient(135deg, #1a0a10, #361422, #4a1f30, #1f1117);
             color: #f3e5f5;
             font-family: Georgia, Tahoma, serif;
             text-align: center;
             padding: 10px;
             margin: 0;
             overflow-x: hidden;
+            transition: background 1s ease;
         }
-        .container {
-            background-color: #361c27;
-            display: inline-block;
-            padding: 20px;
-            border-radius: 35px;
-            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.4);
-            max-width: 520px;
+        /* نافذة تسجيل الدخول الفاخرة الأولى */
+        #loginOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background: rgba(26, 10, 16, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(8px);
+        }
+        .login-box {
+            background: linear-gradient(135deg, #2c131d, #4a2330);
             border: 5px solid #d4af37;
+            padding: 30px;
+            border-radius: 35px;
+            max-width: 440px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.7);
+            text-align: center;
+        }
+        .login-box h2 {
+            color: #ffd700;
+            font-size: 22px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px #000;
+        }
+        .login-box p {
+            color: #ff80bf;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+        .login-box input {
+            width: 90%;
+            padding: 12px;
+            border-radius: 14px;
+            border: 2px solid #d4af37;
+            background-color: #190a11;
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 15px;
+            outline: none;
+        }
+        .login-box .btn-login {
+            background: linear-gradient(45deg, #d4af37, #aa771c);
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 14px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 95%;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.5);
+            transition: 0.3s;
+        }
+        .login-box .btn-login:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+        
+        .container {
+            background-color: #2c131d;
+            display: inline-block;
+            padding: 22px;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.6);
+            max-width: 580px;
+            width: 100%;
+            border: 6px solid #d4af37;
             box-sizing: border-box;
             position: relative;
-            margin-top: 10px;
-            margin-bottom: 20px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .lang-btn {
+            background: linear-gradient(45deg, #d4af37, #aa771c);
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 6px 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.4);
         }
         .developer-note {
             background: linear-gradient(to right, #4a2330, #2c161c);
             border: 2px dashed #d4af37;
-            padding: 12px;
-            border-radius: 15px;
+            padding: 14px;
+            border-radius: 18px;
             margin-bottom: 15px;
             color: #ffd700;
             font-size: 13px;
             font-weight: bold;
-            line-height: 1.6;
+            line-height: 1.7;
+            box-shadow: inset 0 0 10px rgba(212, 175, 55, 0.2);
+            text-align: inherit;
         }
         h1 {
             color: #ffd700;
-            font-size: 21px;
+            font-size: 23px;
             margin-bottom: 5px;
-            text-shadow: 2px 2px 4px #000;
+            text-shadow: 2px 2px 6px #000;
         }
         h3 {
             color: #ff80bf;
-            font-size: 15px;
-            margin-top: 18px;
+            font-size: 16px;
+            margin-top: 20px;
             border-bottom: 2px dotted #d4af37;
-            padding-bottom: 5px;
+            padding-bottom: 6px;
         }
         p {
             color: #e0d1dc;
             font-size: 13px;
         }
-        input, select {
-            padding: 10px;
+        input, select, textarea {
+            padding: 11px;
             font-size: 13px;
-            border-radius: 12px;
+            border-radius: 14px;
             border: 2px solid #d4af37;
-            background-color: #211018;
+            background-color: #190a11;
             color: #fff;
-            text-align: center;
-            width: 88%;
+            text-align: inherit;
+            width: 89%;
             margin-bottom: 10px;
             outline: none;
             box-sizing: border-box;
@@ -72,9 +157,9 @@
         .btn {
             background: linear-gradient(45deg, #d4af37, #aa771c);
             color: #fff;
-            padding: 11px 15px;
+            padding: 12px 16px;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             font-size: 13px;
             cursor: pointer;
             font-weight: bold;
@@ -86,23 +171,25 @@
         }
         .btn:hover {
             transform: translateY(-2px);
-            opacity: 0.9;
+            opacity: 0.95;
         }
         .box-result {
-            background-color: #211018;
+            background-color: #190a11;
             color: #ffd700;
             border: 1px dashed #d4af37;
             padding: 12px;
-            border-radius: 12px;
+            border-radius: 14px;
             margin-top: 10px;
             font-size: 13px;
             font-weight: bold;
-            min-height: 35px;
-            text-align: right;
-            line-height: 1.6;
+            min-height: 40px;
+            text-align: inherit;
+            line-height: 1.7;
+            max-height: 160px;
+            overflow-y: auto;
         }
         .section-box {
-            margin-top: 18px;
+            margin-top: 20px;
             border-top: 2px dashed #4a2330;
             padding-top: 15px;
         }
@@ -111,1890 +198,201 @@
             justify-content: space-around;
             font-size: 11px;
             font-weight: bold;
-            background: #211018;
+            background: #190a11;
             padding: 10px;
-            border-radius: 12px;
+            border-radius: 14px;
             margin-bottom: 12px;
             color: #ffd700;
             border: 1px solid #d4af37;
         }
-        .item-card {
-            background-color: #211018;
-            border: 1.5px solid #d4af37;
-            border-radius: 12px;
-            padding: 9px 12px;
-            margin-top: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            color: #fff;
-        }
-        .victorian-face-box {
-            background: linear-gradient(135deg, #211018, #3b1d28);
+        .tom-face-box {
+            background: linear-gradient(135deg, #190a11, #3b1d28);
             border: 3px solid #d4af37;
-            border-radius: 25px;
-            padding: 15px;
+            border-radius: 28px;
+            padding: 16px;
             margin-bottom: 15px;
-            box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.3);
+            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.3);
         }
-        #charAvatar {
-            font-size: 65px;
+        #tomAvatar {
+            font-size: 75px;
             margin: 5px 0;
-            animation: floatFace 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
-        }
-        @keyframes floatFace {
-            0% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-5px) scale(1.03); }
-            100% { transform: translateY(0px) scale(1); }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <!-- رسالة الإشراف -->
-        <div class="developer-note">
-            🏛️ إمبراطورية القصور الفكتورية برعاية البطلة <b>نور الزهراء الزبيدي</b> 👑✨
-        </div>
-
-        <h1>🌹 إمبراطورية القصور الفكتورية والآداب 🌹</h1>
-        <p>عشِ سحر العصر الفكتوري، استمع للألحان الهادئة، ونظمِ الشعر العربي! ✨</p>
-        
-        <div class="stats">
-            <span id="moneyStat">💵 الخزينة: $5,000</span>
-            <span id="cultureStat">📜 الثقافة: 40%</span>
-            <span id="fameStat">✨ الشهرة: 30%</span>
-        </div>
-
-        <!-- قسم مشغل الموسيقى الهادئة داخل اللعبة (جديد كلياً) -->
-        <div class="section-box" style="background: #211018; border-radius: 20px; padding: 12px; margin-top: 0; border: 2px solid #d4af37;">
-            <p style="color: #ffd700; font-weight: bold; margin-top: 0;">🎶 مشغل الألحان الهادئة الملكية (Ambient Music) 🎹</p>
-            <p style="font-size: 11px; color: #ff80bf;">استمع لمعزوفة بيانو فكتورية ناعمة تعمل في الخلفية أثناء اللعب:</p>
-            <button class="btn" style="background: linear-gradient(45deg, #800020, #d4af37);" onclick="toggleGameMusic()">▶ تشغيل الأغنية الهادئة 🎵</button>
-            <button class="btn" style="background: linear-gradient(45deg, #333, #555); margin-top: 4px;" onclick="stopGameMusic()">⏹ إيقاف الموسيقى 🔇</button>
-            <div id="musicPlayerStatus" class="box-result" style="margin-top: 8px; font-size: 12px;">الموسيقى متوقفة. اضغطي للتشغيل! 🎼</div>
-        </div>
-
-        <!-- قسم الوجه الفكتوري الراقي والأنيق -->
-        <div class="victorian-face-box">
-            <p style="color: #ffd700; font-weight: bold; margin-top:0;">النبيلة الفكتورية (الأميرة صوفيا) 🎨👑</p>
-            <div id="charAvatar">👸🏻🌹</div>
-            <p id="charName" style="color: #ff80bf; font-weight: bold; margin: 2px;">سيدة القصر الملكي الفكتوري</p>
-            <p id="charSpeech" style="font-weight: bold; color: #fff; font-size: 12px;">أهلاً بكِ في صالوني الأدبي الفاخر، حيث يلتقي الشعر العذب بالموسيقى الخالدة.</p>
-            
-            <div style="display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; margin-top: 8px;">
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #800020;" onclick="switchFace('lady')">الأميرة 👸🏻</button>
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #4a2330;" onclick="switchFace('poet')">الشاعرة 📜</button>
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #5c3a21;" onclick="switchFace('musician')">العازفة 🎻</button>
-                <button class="btn" style="width: 97%; margin: 4px; background: linear-gradient(45deg, #d4af37, #800020);" onclick="speakFaceVoice()">🎤 استمعي لصوت السيدة الملكية 🔊</button>
-            </div>
-        </div>
-
-        <!-- 1. قسم الشعر العربي الأصيل -->
-        <div class="section-box">
-            <h3>📜 ديوان الشعر العربي والفصيح</h3>
-            <select id="poetryChoice">
-                <option value="mutanabi">📜 بيت المتنبي: (وَإِذا كانتِ النُفوسُ كِباراً... تَعِبت في مُرادِها الأجسامُ)</option>
-                <option value="antara">🌹 عيون عنترة: (وَلَقَد ذَكَرتُكِ وَالرِماحُ نواهِلٌ... مِنّي وَبيضُ الهِندِ تقطُرُ مِن دَمي)</option>
-                <option value="shawqi">✨ أمير الشعراء أحمد شوقي: (قُم للمُعَلِّمِ وَفِّهِ التَبجيلا... كادَ المُعَلِّمُ أن يَكونَ رَسولا)</option>
-            </select>
-            <button class="btn" onclick="recitePoetry()">ألقِ الشعر العربي واكسبِ هيبة وثقافة 🖋️🌟</button>
-            <div id="poetryResponse" class="box-result">اختاري بيتاً شعرياً وانشري بلاغتكِ في أرجاء القصر! 📜</div>
-        </div>
-
-        <!-- 2. صالون الموسيقى الكلاسيكية -->
-        <div class="section-box">
-            <h3>🎻 صالون الموسيقى الكلاسيكية والشرقية</h3>
-            <select id="musicChoice">
-                <option value="piano">🎹 العزف المنفرد على البيانو الملكي (معزوفة بتهوفن الخالدة)</option>
-                <option value="violin">🎻 سحر الكمان الفكتوري (ألحان الشجن والأناقة)</option>
-                <option value="oud">🎶 العود العربي الأصيل (طرب شرقي أصيل يملأ القصور)</option>
-            </select>
-            <button class="btn" style="background: linear-gradient(45deg, #800020, #d4af37);" onclick="playMusic()">ابدئي العزف واجذبي الحاضرين 🎵💖</button>
-            <div id="musicResponse" class="box-result">دعي الألحان الساحرة تصدح في أرجاء الصالون الملكي! 🎶</div>
-        </div>
-
-        <!-- 3. قسم الوظائف والهوايات الفاخرة -->
-        <div class="section-box">
-            <h3>💼 الوظائف والهوايات الفكتورية</h3>
-            <select id="jobChoice">
-                <option value="painter">🎨 هواية الرسم الزيتي ورسم لوحات البورتريه ($1,200)</option>
-                <option value="writer">🖋️ وظيفة تأليف الروايات والكتب الأدبية ($3,000)</option>
-                <option value="curator">🏛️ مسؤولة ومحافظة المتحف الملكي التاريخي ($7,000)</option>
-            </select>
-            <button class="btn" onclick="doJobOrHobby()">مارسي الهواية أو الوظيفة واربحي الذهب 🪙⚡</button>
-            <div id="jobResponse" class="box-result">طوري مهاراتكِ ووظيفتكِ لتصبحي سيدة القصر الأولى! 💎</div>
-        </div>
-
-        <!-- سجل الإنجازات الملكية -->
-        <div class="section-box">
-            <h3>📜 سجل ألقاب وإنجازات القصر</h3>
-            <div class="item-card">
-                <span>👸🏻 مقعد النبيلات في القصر الفكتوري</span>
-                <span style="color: #ffd700; font-weight: bold;">مملوكة رسميّاً ✅</span>
-            </div>
-            <div id="palaceContainer"></div>
-        </div>
-    </div>
-
-    <script>
-        let money = 5000;
-        let culture = 40;
-        let fame = 30;
-        let faceMsg = "أهلاً بكِ في صالوني الأدبي الفاخر، حيث يلتقي الشعر العذب بالموسيقى الخالدة.";
-        let audioCtx = null;
-        let musicInterval = null;
-
-        function updateStats() {
-            document.getElementById('moneyStat').innerHTML = "💵 الخزينة: $" + money.toLocaleString();
-            document.getElementById('cultureStat').innerHTML = "📜 الثقافة: " + culture + "%";
-            document.getElementById('fameStat').innerHTML = "✨ الشهرة: " + fame + "%";
-        }
-
-        function speakText(text) {
-            if ('speechSynthesis' in window) {
-                let utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'ar-SA';
-                utterance.pitch = 1.1;
-                utterance.rate = 1.0;
-                window.speechSynthesis.speak(utterance);
-            }
-        }
-
-        function speakFaceVoice() {
-            speakText(faceMsg);
-        }
-
-        // تشغيل معزوفة بيانو هادئة آلياً داخل المتصفح (Web Audio API)
-        function toggleGameMusic() {
-            if (musicInterval) return;
-            
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-
-            // نغمات بيانو هادئة ومريحة (ترددات سلم كلاسيكي هادئ)
-            const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 392.00, 329.63];
-            let i = 0;
-
-            musicInterval = setInterval(() => {
-                if (!audioCtx) return;
-                let osc = audioCtx.createOscillator();
-                let gain = audioCtx.createGain();
-                
-                osc.type = 'sine'; // صوت ناعم وهادئ جداً يشبه صندوق الموسيقى
-                osc.frequency.setValueAtTime(notes[i], audioCtx.currentTime);
-                
-                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.0);
-                
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                
-                osc.start();
-                osc.stop(audioCtx.currentTime + 2.0);
-
-                i = (i + 1) % notes.length;
-            }, 1200);
-
-            document.getElementById('musicPlayerStatus').innerHTML = "🎶 تشغيل الأغنية الهادئة بنجاح... استمتعي بالأجواء الملكية 🎹✨";
-        }
-
-        function stopGameMusic() {
-            if (musicInterval) {
-                clearInterval(musicInterval);
-                musicInterval = null;
-            }
-            document.getElementById('musicPlayerStatus').innerHTML = "⏹ الموسيقى متوقفة. اضغطي للتشغيل مجدداً 🔇";
-        }
-
-        function switchFace(type) {
-            let avatar = document.getElementById('charAvatar');
-            let name = document.getElementById('charName');
-            let speech = document.getElementById('charSpeech');
-
-            if (type === 'lady') {
-                avatar.innerHTML = "👸🏻🌹";
-                name.innerHTML = "سيدة القصر الملكي الفكتوري";
-                faceMsg = "الأناقة والذوق الرفيع هما عنوان سيدات القصور الفكتورية.";
-            } else if (type === 'poet') {
-                avatar.innerHTML = "📜✨";
-                name.innerHTML = "شاعرة البلاط الملكي";
-                faceMsg = "البلاغة والشعر العربي هما روح الجمال وأصل الحكمة.";
-            } else if (type === 'musician') {
-                avatar.innerHTML = "🎻🎶";
-                name.innerHTML = "عازفة الأوركسترا الأولى";
-                faceMsg = "الموسيقى تغذي الروح وتفتح أبواب القلوب على مصراعيها.";
-            }
-            speech.innerHTML = faceMsg;
-            speakText(faceMsg);
-        }
-
-        function recitePoetry() {
-            let choice = document.getElementById('poetryChoice').value;
-            let textMsg = "";
-            let gainCulture = 15;
-
-            if (choice === 'mutanabi') {
-                textMsg = "📜 ألقيتِ بيت المتنبي بحماس بلاغي عظيم: (وَإِذا كانتِ النُفوسُ كِباراً... تَعِبت في مُرادِها الأجسامُ). تفاعل الحاضرون بإعجاب شديد!";
-            } else if (choice === 'antara') {
-                textMsg = "🌹 ألقيتِ أبيات عنترة بن شداد بصوت فصيح قوي: (وَلَقَد ذَكَرتُكِ وَالرِماحُ نواهِلٌ...). زادت هيبتكِ الثقافية!";
-            } else {
-                textMsg = "✨ ألقيتِ رائعة أمير الشعراء أحمد شوقي: (قُم للمُعَلِّمِ وَفِّهِ التَبجيلا...). صفق لكِ الجميع بحرارة!";
-            }
-
-            culture += gainCulture;
-            fame += 10;
-            money += 500;
-            updateStats();
-            document.getElementById('poetryResponse').innerHTML = textMsg;
-            speakText("إلقاء شعري ساحر وبليغ جداً!");
-        }
-
-        function playMusic() {
-            let choice = document.getElementById('musicChoice').value;
-            let musicMsg = "";
-
-            if (choice === 'piano') {
-                musicMsg = "🎹 عزفتِ على البيانو الملكي مقطوعة بتهوفن الخالدة؛ فامتزج سحر العصر الفكتوري بأجمل الألحان وغمرت المكان هالة من السكينة.";
-            } else if (choice === 'violin') {
-                musicMsg = "🎻 عزفتِ على الكمان الفكتوري ألحان الشجن والأناقة الملكية؛ فبهرتِ كل ضيوف القصر!";
-            } else {
-                musicMsg = "🎶 أبدعتِ في العزف على آلة العود العربي الأصيل؛ فطرب الحاضرون على أوتار الشرق الساحرة وحصلتِ على مكافأة مالية!";
-            }
-
-            money += 800;
-            fame += 15;
-            updateStats();
-            document.getElementById('musicResponse').innerHTML = musicMsg;
-            speakText("معزوفة موسيقية رائعة وساحرة!");
-        }
-
-        function doJobOrHobby() {
-            let job = document.getElementById('jobChoice').value;
-            let earned = 0;
-            let resMsg = "";
-
-            if (job === 'painter') {
-                earned = 1200;
-                resMsg = "🎨 أنهيتِ لوحة بورتريه زيتية بأسلوب فكتوري مذهل! بيعت اللوحة بمزاد القصر وربحتِ 1,200 دولار.";
-            } else if (job === 'writer') {
-                earned = 3000;
-                resMsg = "🖋️ نشرتِ روايتكِ الأدبية الجديدة التي حققت مبيعات قياسية في العاصمة! دخل رصيدكِ 3,000 دولار.";
-            } else {
-                earned = 7000;
-                resMsg = "🏛️ أدرتِ المتحف الملكي التاريخي بكفاءة عالية واكتشفتِ قطعاً أثرية نادرة! ربحتِ 7,000 دولار وارتفعت ثقافتكِ!";
-                culture += 25;
-            }
-
-            money += earned;
-            updateStats();
-            document.getElementById('jobResponse').innerHTML = resMsg;
-            speakText("عمل إبداعي متميز للغاية!");
-        }
-    </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إمبراطورية العصر الفكتوري والألحان الهادئة 👑🎻</title>
-    <style>
-        body {
-            background: linear-gradient(135deg, #2c161c, #4a2330, #1f1117);
-            color: #f3e5f5;
-            font-family: Georgia, Tahoma, serif;
-            text-align: center;
-            padding: 10px;
-            margin: 0;
-            overflow-x: hidden;
-        }
-        .container {
-            background-color: #361c27;
-            display: inline-block;
-            padding: 20px;
-            border-radius: 35px;
-            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.4);
-            max-width: 520px;
-            width: 100%;
-            border: 5px solid #d4af37;
-            box-sizing: border-box;
-            position: relative;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-        .developer-note {
-            background: linear-gradient(to right, #4a2330, #2c161c);
-            border: 2px dashed #d4af37;
-            padding: 12px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            color: #ffd700;
-            font-size: 13px;
-            font-weight: bold;
-            line-height: 1.6;
-        }
-        h1 {
-            color: #ffd700;
-            font-size: 21px;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 4px #000;
-        }
-        h3 {
-            color: #ff80bf;
-            font-size: 15px;
-            margin-top: 18px;
-            border-bottom: 2px dotted #d4af37;
-            padding-bottom: 5px;
-        }
-        p {
-            color: #e0d1dc;
-            font-size: 13px;
-        }
-        input, select {
-            padding: 10px;
-            font-size: 13px;
-            border-radius: 12px;
-            border: 2px solid #d4af37;
-            background-color: #211018;
-            color: #fff;
-            text-align: center;
-            width: 88%;
-            margin-bottom: 10px;
-            outline: none;
-            box-sizing: border-box;
-        }
-        .btn {
-            background: linear-gradient(45deg, #d4af37, #aa771c);
-            color: #fff;
-            padding: 11px 15px;
-            border: none;
-            border-radius: 12px;
-            font-size: 13px;
             cursor: pointer;
-            font-weight: bold;
-            display: block;
-            margin: 0 auto 10px auto;
-            width: 92%;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-            transition: 0.3s;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-        .box-result {
-            background-color: #211018;
-            color: #ffd700;
-            border: 1px dashed #d4af37;
-            padding: 12px;
-            border-radius: 12px;
-            margin-top: 10px;
-            font-size: 13px;
-            font-weight: bold;
-            min-height: 35px;
-            text-align: right;
-            line-height: 1.6;
-        }
-        .section-box {
-            margin-top: 18px;
-            border-top: 2px dashed #4a2330;
-            padding-top: 15px;
-        }
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            font-size: 11px;
-            font-weight: bold;
-            background: #211018;
-            padding: 10px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            color: #ffd700;
-            border: 1px solid #d4af37;
-        }
-        .item-card {
-            background-color: #211018;
-            border: 1.5px solid #d4af37;
-            border-radius: 12px;
-            padding: 9px 12px;
-            margin-top: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            color: #fff;
-        }
-        .victorian-face-box {
-            background: linear-gradient(135deg, #211018, #3b1d28);
-            border: 3px solid #d4af37;
-            border-radius: 25px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.3);
-        }
-        #charAvatar {
-            font-size: 65px;
-            margin: 5px 0;
-            animation: floatFace 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
-        }
-        @keyframes floatFace {
-            0% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-5px) scale(1.03); }
-            100% { transform: translateY(0px) scale(1); }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <!-- رسالة الإشراف -->
-        <div class="developer-note">
-            🏛️ إمبراطورية القصور الفكتورية برعاية البطلة <b>نور الزهراء الزبيدي</b> 👑✨
-        </div>
-
-        <h1>🌹 إمبراطورية القصور الفكتورية والآداب 🌹</h1>
-        <p>عشِ سحر العصر الفكتوري، استمع للألحان الهادئة، ونظمِ الشعر العربي! ✨</p>
-        
-        <div class="stats">
-            <span id="moneyStat">💵 الخزينة: $5,000</span>
-            <span id="cultureStat">📜 الثقافة: 40%</span>
-            <span id="fameStat">✨ الشهرة: 30%</span>
-        </div>
-
-        <!-- قسم مشغل الموسيقى الهادئة داخل اللعبة (جديد كلياً) -->
-        <div class="section-box" style="background: #211018; border-radius: 20px; padding: 12px; margin-top: 0; border: 2px solid #d4af37;">
-            <p style="color: #ffd700; font-weight: bold; margin-top: 0;">🎶 مشغل الألحان الهادئة الملكية (Ambient Music) 🎹</p>
-            <p style="font-size: 11px; color: #ff80bf;">استمع لمعزوفة بيانو فكتورية ناعمة تعمل في الخلفية أثناء اللعب:</p>
-            <button class="btn" style="background: linear-gradient(45deg, #800020, #d4af37);" onclick="toggleGameMusic()">▶ تشغيل الأغنية الهادئة 🎵</button>
-            <button class="btn" style="background: linear-gradient(45deg, #333, #555); margin-top: 4px;" onclick="stopGameMusic()">⏹ إيقاف الموسيقى 🔇</button>
-            <div id="musicPlayerStatus" class="box-result" style="margin-top: 8px; font-size: 12px;">الموسيقى متوقفة. اضغطي للتشغيل! 🎼</div>
-        </div>
-
-        <!-- قسم الوجه الفكتوري الراقي والأنيق -->
-        <div class="victorian-face-box">
-            <p style="color: #ffd700; font-weight: bold; margin-top:0;">النبيلة الفكتورية (الأميرة صوفيا) 🎨👑</p>
-            <div id="charAvatar">👸🏻🌹</div>
-            <p id="charName" style="color: #ff80bf; font-weight: bold; margin: 2px;">سيدة القصر الملكي الفكتوري</p>
-            <p id="charSpeech" style="font-weight: bold; color: #fff; font-size: 12px;">أهلاً بكِ في صالوني الأدبي الفاخر، حيث يلتقي الشعر العذب بالموسيقى الخالدة.</p>
-            
-            <div style="display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; margin-top: 8px;">
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #800020;" onclick="switchFace('lady')">الأميرة 👸🏻</button>
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #4a2330;" onclick="switchFace('poet')">الشاعرة 📜</button>
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #5c3a21;" onclick="switchFace('musician')">العازفة 🎻</button>
-                <button class="btn" style="width: 97%; margin: 4px; background: linear-gradient(45deg, #d4af37, #800020);" onclick="speakFaceVoice()">🎤 استمعي لصوت السيدة الملكية 🔊</button>
-            </div>
-        </div>
-
-        <!-- 1. قسم الشعر العربي الأصيل -->
-        <div class="section-box">
-            <h3>📜 ديوان الشعر العربي والفصيح</h3>
-            <select id="poetryChoice">
-                <option value="mutanabi">📜 بيت المتنبي: (وَإِذا كانتِ النُفوسُ كِباراً... تَعِبت في مُرادِها الأجسامُ)</option>
-                <option value="antara">🌹 عيون عنترة: (وَلَقَد ذَكَرتُكِ وَالرِماحُ نواهِلٌ... مِنّي وَبيضُ الهِندِ تقطُرُ مِن دَمي)</option>
-                <option value="shawqi">✨ أمير الشعراء أحمد شوقي: (قُم للمُعَلِّمِ وَفِّهِ التَبجيلا... كادَ المُعَلِّمُ أن يَكونَ رَسولا)</option>
-            </select>
-            <button class="btn" onclick="recitePoetry()">ألقِ الشعر العربي واكسبِ هيبة وثقافة 🖋️🌟</button>
-            <div id="poetryResponse" class="box-result">اختاري بيتاً شعرياً وانشري بلاغتكِ في أرجاء القصر! 📜</div>
-        </div>
-
-        <!-- 2. صالون الموسيقى الكلاسيكية -->
-        <div class="section-box">
-            <h3>🎻 صالون الموسيقى الكلاسيكية والشرقية</h3>
-            <select id="musicChoice">
-                <option value="piano">🎹 العزف المنفرد على البيانو الملكي (معزوفة بتهوفن الخالدة)</option>
-                <option value="violin">🎻 سحر الكمان الفكتوري (ألحان الشجن والأناقة)</option>
-                <option value="oud">🎶 العود العربي الأصيل (طرب شرقي أصيل يملأ القصور)</option>
-            </select>
-            <button class="btn" style="background: linear-gradient(45deg, #800020, #d4af37);" onclick="playMusic()">ابدئي العزف واجذبي الحاضرين 🎵💖</button>
-            <div id="musicResponse" class="box-result">دعي الألحان الساحرة تصدح في أرجاء الصالون الملكي! 🎶</div>
-        </div>
-
-        <!-- 3. قسم الوظائف والهوايات الفاخرة -->
-        <div class="section-box">
-            <h3>💼 الوظائف والهوايات الفكتورية</h3>
-            <select id="jobChoice">
-                <option value="painter">🎨 هواية الرسم الزيتي ورسم لوحات البورتريه ($1,200)</option>
-                <option value="writer">🖋️ وظيفة تأليف الروايات والكتب الأدبية ($3,000)</option>
-                <option value="curator">🏛️ مسؤولة ومحافظة المتحف الملكي التاريخي ($7,000)</option>
-            </select>
-            <button class="btn" onclick="doJobOrHobby()">مارسي الهواية أو الوظيفة واربحي الذهب 🪙⚡</button>
-            <div id="jobResponse" class="box-result">طوري مهاراتكِ ووظيفتكِ لتصبحي سيدة القصر الأولى! 💎</div>
-        </div>
-
-        <!-- سجل الإنجازات الملكية -->
-        <div class="section-box">
-            <h3>📜 سجل ألقاب وإنجازات القصر</h3>
-            <div class="item-card">
-                <span>👸🏻 مقعد النبيلات في القصر الفكتوري</span>
-                <span style="color: #ffd700; font-weight: bold;">مملوكة رسميّاً ✅</span>
-            </div>
-            <div id="palaceContainer"></div>
-        </div>
-    </div>
-
-    <script>
-        let money = 5000;
-        let culture = 40;
-        let fame = 30;
-        let faceMsg = "أهلاً بكِ في صالوني الأدبي الفاخر، حيث يلتقي الشعر العذب بالموسيقى الخالدة.";
-        let audioCtx = null;
-        let musicInterval = null;
-
-        function updateStats() {
-            document.getElementById('moneyStat').innerHTML = "💵 الخزينة: $" + money.toLocaleString();
-            document.getElementById('cultureStat').innerHTML = "📜 الثقافة: " + culture + "%";
-            document.getElementById('fameStat').innerHTML = "✨ الشهرة: " + fame + "%";
-        }
-
-        function speakText(text) {
-            if ('speechSynthesis' in window) {
-                let utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'ar-SA';
-                utterance.pitch = 1.1;
-                utterance.rate = 1.0;
-                window.speechSynthesis.speak(utterance);
-            }
-        }
-
-        function speakFaceVoice() {
-            speakText(faceMsg);
-        }
-
-        // تشغيل معزوفة بيانو هادئة آلياً داخل المتصفح (Web Audio API)
-        function toggleGameMusic() {
-            if (musicInterval) return;
-            
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-
-            // نغمات بيانو هادئة ومريحة (ترددات سلم كلاسيكي هادئ)
-            const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 392.00, 329.63];
-            let i = 0;
-
-            musicInterval = setInterval(() => {
-                if (!audioCtx) return;
-                let osc = audioCtx.createOscillator();
-                let gain = audioCtx.createGain();
-                
-                osc.type = 'sine'; // صوت ناعم وهادئ جداً يشبه صندوق الموسيقى
-                osc.frequency.setValueAtTime(notes[i], audioCtx.currentTime);
-                
-                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.0);
-                
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                
-                osc.start();
-                osc.stop(audioCtx.currentTime + 2.0);
-
-                i = (i + 1) % notes.length;
-            }, 1200);
-
-            document.getElementById('musicPlayerStatus').innerHTML = "🎶 تشغيل الأغنية الهادئة بنجاح... استمتعي بالأجواء الملكية 🎹✨";
-        }
-
-        function stopGameMusic() {
-            if (musicInterval) {
-                clearInterval(musicInterval);
-                musicInterval = null;
-            }
-            document.getElementById('musicPlayerStatus').innerHTML = "⏹ الموسيقى متوقفة. اضغطي للتشغيل مجدداً 🔇";
-        }
-
-        function switchFace(type) {
-            let avatar = document.getElementById('charAvatar');
-            let name = document.getElementById('charName');
-            let speech = document.getElementById('charSpeech');
-
-            if (type === 'lady') {
-                avatar.innerHTML = "👸🏻🌹";
-                name.innerHTML = "سيدة القصر الملكي الفكتوري";
-                faceMsg = "الأناقة والذوق الرفيع هما عنوان سيدات القصور الفكتورية.";
-            } else if (type === 'poet') {
-                avatar.innerHTML = "📜✨";
-                name.innerHTML = "شاعرة البلاط الملكي";
-                faceMsg = "البلاغة والشعر العربي هما روح الجمال وأصل الحكمة.";
-            } else if (type === 'musician') {
-                avatar.innerHTML = "🎻🎶";
-                name.innerHTML = "عازفة الأوركسترا الأولى";
-                faceMsg = "الموسيقى تغذي الروح وتفتح أبواب القلوب على مصراعيها.";
-            }
-            speech.innerHTML = faceMsg;
-            speakText(faceMsg);
-        }
-
-        function recitePoetry() {
-            let choice = document.getElementById('poetryChoice').value;
-            let textMsg = "";
-            let gainCulture = 15;
-
-            if (choice === 'mutanabi') {
-                textMsg = "📜 ألقيتِ بيت المتنبي بحماس بلاغي عظيم: (وَإِذا كانتِ النُفوسُ كِباراً... تَعِبت في مُرادِها الأجسامُ). تفاعل الحاضرون بإعجاب شديد!";
-            } else if (choice === 'antara') {
-                textMsg = "🌹 ألقيتِ أبيات عنترة بن شداد بصوت فصيح قوي: (وَلَقَد ذَكَرتُكِ وَالرِماحُ نواهِلٌ...). زادت هيبتكِ الثقافية!";
-            } else {
-                textMsg = "✨ ألقيتِ رائعة أمير الشعراء أحمد شوقي: (قُم للمُعَلِّمِ وَفِّهِ التَبجيلا...). صفق لكِ الجميع بحرارة!";
-            }
-
-            culture += gainCulture;
-            fame += 10;
-            money += 500;
-            updateStats();
-            document.getElementById('poetryResponse').innerHTML = textMsg;
-            speakText("إلقاء شعري ساحر وبليغ جداً!");
-        }
-
-        function playMusic() {
-            let choice = document.getElementById('musicChoice').value;
-            let musicMsg = "";
-
-            if (choice === 'piano') {
-                musicMsg = "🎹 عزفتِ على البيانو الملكي مقطوعة بتهوفن الخالدة؛ فامتزج سحر العصر الفكتوري بأجمل الألحان وغمرت المكان هالة من السكينة.";
-            } else if (choice === 'violin') {
-                musicMsg = "🎻 عزفتِ على الكمان الفكتوري ألحان الشجن والأناقة الملكية؛ فبهرتِ كل ضيوف القصر!";
-            } else {
-                musicMsg = "🎶 أبدعتِ في العزف على آلة العود العربي الأصيل؛ فطرب الحاضرون على أوتار الشرق الساحرة وحصلتِ على مكافأة مالية!";
-            }
-
-            money += 800;
-            fame += 15;
-            updateStats();
-            document.getElementById('musicResponse').innerHTML = musicMsg;
-            speakText("معزوفة موسيقية رائعة وساحرة!");
-        }
-
-        function doJobOrHobby() {
-            let job = document.getElementById('jobChoice').value;
-            let earned = 0;
-            let resMsg = "";
-
-            if (job === 'painter') {
-                earned = 1200;
-                resMsg = "🎨 أنهيتِ لوحة بورتريه زيتية بأسلوب فكتوري مذهل! بيعت اللوحة بمزاد القصر وربحتِ 1,200 دولار.";
-            } else if (job === 'writer') {
-                earned = 3000;
-                resMsg = "🖋️ نشرتِ روايتكِ الأدبية الجديدة التي حققت مبيعات قياسية في العاصمة! دخل رصيدكِ 3,000 دولار.";
-            } else {
-                earned = 7000;
-                resMsg = "🏛️ أدرتِ المتحف الملكي التاريخي بكفاءة عالية واكتشفتِ قطعاً أثرية نادرة! ربحتِ 7,000 دولار وارتفعت ثقافتكِ!";
-                culture += 25;
-            }
-
-            money += earned;
-            updateStats();
-            document.getElementById('jobResponse').innerHTML = resMsg;
-            speakText("عمل إبداعي متميز للغاية!");
-        }
-    </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إمبراطورية العصر الفكتوري والألحان الهادئة 👑🎻</title>
-    <style>
-        body {
-            background: linear-gradient(135deg, #2c161c, #4a2330, #1f1117);
-            color: #f3e5f5;
-            font-family: Georgia, Tahoma, serif;
-            text-align: center;
-            padding: 10px;
-            margin: 0;
-            overflow-x: hidden;
-        }
-        .container {
-            background-color: #361c27;
+            user-select: none;
+            transition: 0.2s;
             display: inline-block;
-            padding: 20px;
-            border-radius: 35px;
-            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.4);
-            max-width: 520px;
-            width: 100%;
-            border: 5px solid #d4af37;
-            box-sizing: border-box;
-            position: relative;
-            margin-top: 10px;
-            margin-bottom: 20px;
+            filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
         }
-        .developer-note {
-            background: linear-gradient(to right, #4a2330, #2c161c);
-            border: 2px dashed #d4af37;
-            padding: 12px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            color: #ffd700;
-            font-size: 13px;
-            font-weight: bold;
-            line-height: 1.6;
-        }
-        h1 {
-            color: #ffd700;
-            font-size: 21px;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 4px #000;
-        }
-        h3 {
-            color: #ff80bf;
-            font-size: 15px;
-            margin-top: 18px;
-            border-bottom: 2px dotted #d4af37;
-            padding-bottom: 5px;
-        }
-        p {
-            color: #e0d1dc;
-            font-size: 13px;
-        }
-        input, select {
-            padding: 10px;
-            font-size: 13px;
-            border-radius: 12px;
-            border: 2px solid #d4af37;
-            background-color: #211018;
-            color: #fff;
-            text-align: center;
-            width: 88%;
-            margin-bottom: 10px;
-            outline: none;
-            box-sizing: border-box;
-        }
-        .btn {
-            background: linear-gradient(45deg, #d4af37, #aa771c);
-            color: #fff;
-            padding: 11px 15px;
-            border: none;
-            border-radius: 12px;
-            font-size: 13px;
-            cursor: pointer;
-            font-weight: bold;
-            display: block;
-            margin: 0 auto 10px auto;
-            width: 92%;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-            transition: 0.3s;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-        .box-result {
-            background-color: #211018;
-            color: #ffd700;
-            border: 1px dashed #d4af37;
-            padding: 12px;
-            border-radius: 12px;
-            margin-top: 10px;
-            font-size: 13px;
-            font-weight: bold;
-            min-height: 35px;
-            text-align: right;
-            line-height: 1.6;
-        }
-        .section-box {
-            margin-top: 18px;
-            border-top: 2px dashed #4a2330;
-            padding-top: 15px;
-        }
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            font-size: 11px;
-            font-weight: bold;
-            background: #211018;
-            padding: 10px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            color: #ffd700;
-            border: 1px solid #d4af37;
-        }
-        .item-card {
-            background-color: #211018;
-            border: 1.5px solid #d4af37;
-            border-radius: 12px;
-            padding: 9px 12px;
-            margin-top: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            color: #fff;
-        }
-        .victorian-face-box {
-            background: linear-gradient(135deg, #211018, #3b1d28);
-            border: 3px solid #d4af37;
-            border-radius: 25px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.3);
-        }
-        #charAvatar {
-            font-size: 65px;
-            margin: 5px 0;
-            animation: floatFace 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
-        }
-        @keyframes floatFace {
-            0% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-5px) scale(1.03); }
-            100% { transform: translateY(0px) scale(1); }
+        #tomAvatar:active {
+            transform: scale(1.2) rotate(5deg);
         }
     </style>
 </head>
-<body>
+<body id="gameBody">
 
-    <div class="container">
-        <!-- رسالة الإشراف -->
-        <div class="developer-note">
-            🏛️ إمبراطورية القصور الفكتورية برعاية البطلة <b>نور الزهراء الزبيدي</b> 👑✨
-        </div>
-
-        <h1>🌹 إمبراطورية القصور الفكتورية والآداب 🌹</h1>
-        <p>عشِ سحر العصر الفكتوري، استمع للألحان الهادئة، ونظمِ الشعر العربي! ✨</p>
-        
-        <div class="stats">
-            <span id="moneyStat">💵 الخزينة: $5,000</span>
-            <span id="cultureStat">📜 الثقافة: 40%</span>
-            <span id="fameStat">✨ الشهرة: 30%</span>
-        </div>
-
-        <!-- قسم مشغل الموسيقى الهادئة داخل اللعبة (جديد كلياً) -->
-        <div class="section-box" style="background: #211018; border-radius: 20px; padding: 12px; margin-top: 0; border: 2px solid #d4af37;">
-            <p style="color: #ffd700; font-weight: bold; margin-top: 0;">🎶 مشغل الألحان الهادئة الملكية (Ambient Music) 🎹</p>
-            <p style="font-size: 11px; color: #ff80bf;">استمع لمعزوفة بيانو فكتورية ناعمة تعمل في الخلفية أثناء اللعب:</p>
-            <button class="btn" style="background: linear-gradient(45deg, #800020, #d4af37);" onclick="toggleGameMusic()">▶ تشغيل الأغنية الهادئة 🎵</button>
-            <button class="btn" style="background: linear-gradient(45deg, #333, #555); margin-top: 4px;" onclick="stopGameMusic()">⏹ إيقاف الموسيقى 🔇</button>
-            <div id="musicPlayerStatus" class="box-result" style="margin-top: 8px; font-size: 12px;">الموسيقى متوقفة. اضغطي للتشغيل! 🎼</div>
-        </div>
-
-        <!-- قسم الوجه الفكتوري الراقي والأنيق -->
-        <div class="victorian-face-box">
-            <p style="color: #ffd700; font-weight: bold; margin-top:0;">النبيلة الفكتورية (الأميرة صوفيا) 🎨👑</p>
-            <div id="charAvatar">👸🏻🌹</div>
-            <p id="charName" style="color: #ff80bf; font-weight: bold; margin: 2px;">سيدة القصر الملكي الفكتوري</p>
-            <p id="charSpeech" style="font-weight: bold; color: #fff; font-size: 12px;">أهلاً بكِ في صالوني الأدبي الفاخر، حيث يلتقي الشعر العذب بالموسيقى الخالدة.</p>
-            
-            <div style="display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; margin-top: 8px;">
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #800020;" onclick="switchFace('lady')">الأميرة 👸🏻</button>
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #4a2330;" onclick="switchFace('poet')">الشاعرة 📜</button>
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #5c3a21;" onclick="switchFace('musician')">العازفة 🎻</button>
-                <button class="btn" style="width: 97%; margin: 4px; background: linear-gradient(45deg, #d4af37, #800020);" onclick="speakFaceVoice()">🎤 استمعي لصوت السيدة الملكية 🔊</button>
-            </div>
-        </div>
-
-        <!-- 1. قسم الشعر العربي الأصيل -->
-        <div class="section-box">
-            <h3>📜 ديوان الشعر العربي والفصيح</h3>
-            <select id="poetryChoice">
-                <option value="mutanabi">📜 بيت المتنبي: (وَإِذا كانتِ النُفوسُ كِباراً... تَعِبت في مُرادِها الأجسامُ)</option>
-                <option value="antara">🌹 عيون عنترة: (وَلَقَد ذَكَرتُكِ وَالرِماحُ نواهِلٌ... مِنّي وَبيضُ الهِندِ تقطُرُ مِن دَمي)</option>
-                <option value="shawqi">✨ أمير الشعراء أحمد شوقي: (قُم للمُعَلِّمِ وَفِّهِ التَبجيلا... كادَ المُعَلِّمُ أن يَكونَ رَسولا)</option>
-            </select>
-            <button class="btn" onclick="recitePoetry()">ألقِ الشعر العربي واكسبِ هيبة وثقافة 🖋️🌟</button>
-            <div id="poetryResponse" class="box-result">اختاري بيتاً شعرياً وانشري بلاغتكِ في أرجاء القصر! 📜</div>
-        </div>
-
-        <!-- 2. صالون الموسيقى الكلاسيكية -->
-        <div class="section-box">
-            <h3>🎻 صالون الموسيقى الكلاسيكية والشرقية</h3>
-            <select id="musicChoice">
-                <option value="piano">🎹 العزف المنفرد على البيانو الملكي (معزوفة بتهوفن الخالدة)</option>
-                <option value="violin">🎻 سحر الكمان الفكتوري (ألحان الشجن والأناقة)</option>
-                <option value="oud">🎶 العود العربي الأصيل (طرب شرقي أصيل يملأ القصور)</option>
-            </select>
-            <button class="btn" style="background: linear-gradient(45deg, #800020, #d4af37);" onclick="playMusic()">ابدئي العزف واجذبي الحاضرين 🎵💖</button>
-            <div id="musicResponse" class="box-result">دعي الألحان الساحرة تصدح في أرجاء الصالون الملكي! 🎶</div>
-        </div>
-
-        <!-- 3. قسم الوظائف والهوايات الفاخرة -->
-        <div class="section-box">
-            <h3>💼 الوظائف والهوايات الفكتورية</h3>
-            <select id="jobChoice">
-                <option value="painter">🎨 هواية الرسم الزيتي ورسم لوحات البورتريه ($1,200)</option>
-                <option value="writer">🖋️ وظيفة تأليف الروايات والكتب الأدبية ($3,000)</option>
-                <option value="curator">🏛️ مسؤولة ومحافظة المتحف الملكي التاريخي ($7,000)</option>
-            </select>
-            <button class="btn" onclick="doJobOrHobby()">مارسي الهواية أو الوظيفة واربحي الذهب 🪙⚡</button>
-            <div id="jobResponse" class="box-result">طوري مهاراتكِ ووظيفتكِ لتصبحي سيدة القصر الأولى! 💎</div>
-        </div>
-
-        <!-- سجل الإنجازات الملكية -->
-        <div class="section-box">
-            <h3>📜 سجل ألقاب وإنجازات القصر</h3>
-            <div class="item-card">
-                <span>👸🏻 مقعد النبيلات في القصر الفكتوري</span>
-                <span style="color: #ffd700; font-weight: bold;">مملوكة رسميّاً ✅</span>
-            </div>
-            <div id="palaceContainer"></div>
+    <!-- نافذة تسجيل الدخول البداية الملكية -->
+    <div id="loginOverlay">
+        <div class="login-box">
+            <h2 id="loginTitle">👑 أهلاً بكِ في عالم زمرد 👑</h2>
+            <p id="loginSubtitle">كوكب الفتياة والمرح والإمبراطورية المفتوحة ✨</p>
+            <input type="text" id="usernameInput" placeholder="اكتبي اسمكِ الملكي الكريم هنا...">
+            <button class="btn-login" onclick="enterPlanet()" id="btnLoginText">دخول العالم السحري 🌟</button>
         </div>
     </div>
 
-    <script>
-        let money = 5000;
-        let culture = 40;
-        let fame = 30;
-        let faceMsg = "أهلاً بكِ في صالوني الأدبي الفاخر، حيث يلتقي الشعر العذب بالموسيقى الخالدة.";
-        let audioCtx = null;
-        let musicInterval = null;
-
-        function updateStats() {
-            document.getElementById('moneyStat').innerHTML = "💵 الخزينة: $" + money.toLocaleString();
-            document.getElementById('cultureStat').innerHTML = "📜 الثقافة: " + culture + "%";
-            document.getElementById('fameStat').innerHTML = "✨ الشهرة: " + fame + "%";
-        }
-
-        function speakText(text) {
-            if ('speechSynthesis' in window) {
-                let utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'ar-SA';
-                utterance.pitch = 1.1;
-                utterance.rate = 1.0;
-                window.speechSynthesis.speak(utterance);
-            }
-        }
-
-        function speakFaceVoice() {
-            speakText(faceMsg);
-        }
-
-        // تشغيل معزوفة بيانو هادئة آلياً داخل المتصفح (Web Audio API)
-        function toggleGameMusic() {
-            if (musicInterval) return;
-            
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-
-            // نغمات بيانو هادئة ومريحة (ترددات سلم كلاسيكي هادئ)
-            const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 392.00, 329.63];
-            let i = 0;
-
-            musicInterval = setInterval(() => {
-                if (!audioCtx) return;
-                let osc = audioCtx.createOscillator();
-                let gain = audioCtx.createGain();
-                
-                osc.type = 'sine'; // صوت ناعم وهادئ جداً يشبه صندوق الموسيقى
-                osc.frequency.setValueAtTime(notes[i], audioCtx.currentTime);
-                
-                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.0);
-                
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                
-                osc.start();
-                osc.stop(audioCtx.currentTime + 2.0);
-
-                i = (i + 1) % notes.length;
-            }, 1200);
-
-            document.getElementById('musicPlayerStatus').innerHTML = "🎶 تشغيل الأغنية الهادئة بنجاح... استمتعي بالأجواء الملكية 🎹✨";
-        }
-
-        function stopGameMusic() {
-            if (musicInterval) {
-                clearInterval(musicInterval);
-                musicInterval = null;
-            }
-            document.getElementById('musicPlayerStatus').innerHTML = "⏹ الموسيقى متوقفة. اضغطي للتشغيل مجدداً 🔇";
-        }
-
-        function switchFace(type) {
-            let avatar = document.getElementById('charAvatar');
-            let name = document.getElementById('charName');
-            let speech = document.getElementById('charSpeech');
-
-            if (type === 'lady') {
-                avatar.innerHTML = "👸🏻🌹";
-                name.innerHTML = "سيدة القصر الملكي الفكتوري";
-                faceMsg = "الأناقة والذوق الرفيع هما عنوان سيدات القصور الفكتورية.";
-            } else if (type === 'poet') {
-                avatar.innerHTML = "📜✨";
-                name.innerHTML = "شاعرة البلاط الملكي";
-                faceMsg = "البلاغة والشعر العربي هما روح الجمال وأصل الحكمة.";
-            } else if (type === 'musician') {
-                avatar.innerHTML = "🎻🎶";
-                name.innerHTML = "عازفة الأوركسترا الأولى";
-                faceMsg = "الموسيقى تغذي الروح وتفتح أبواب القلوب على مصراعيها.";
-            }
-            speech.innerHTML = faceMsg;
-            speakText(faceMsg);
-        }
-
-        function recitePoetry() {
-            let choice = document.getElementById('poetryChoice').value;
-            let textMsg = "";
-            let gainCulture = 15;
-
-            if (choice === 'mutanabi') {
-                textMsg = "📜 ألقيتِ بيت المتنبي بحماس بلاغي عظيم: (وَإِذا كانتِ النُفوسُ كِباراً... تَعِبت في مُرادِها الأجسامُ). تفاعل الحاضرون بإعجاب شديد!";
-            } else if (choice === 'antara') {
-                textMsg = "🌹 ألقيتِ أبيات عنترة بن شداد بصوت فصيح قوي: (وَلَقَد ذَكَرتُكِ وَالرِماحُ نواهِلٌ...). زادت هيبتكِ الثقافية!";
-            } else {
-                textMsg = "✨ ألقيتِ رائعة أمير الشعراء أحمد شوقي: (قُم للمُعَلِّمِ وَفِّهِ التَبجيلا...). صفق لكِ الجميع بحرارة!";
-            }
-
-            culture += gainCulture;
-            fame += 10;
-            money += 500;
-            updateStats();
-            document.getElementById('poetryResponse').innerHTML = textMsg;
-            speakText("إلقاء شعري ساحر وبليغ جداً!");
-        }
-
-        function playMusic() {
-            let choice = document.getElementById('musicChoice').value;
-            let musicMsg = "";
-
-            if (choice === 'piano') {
-                musicMsg = "🎹 عزفتِ على البيانو الملكي مقطوعة بتهوفن الخالدة؛ فامتزج سحر العصر الفكتوري بأجمل الألحان وغمرت المكان هالة من السكينة.";
-            } else if (choice === 'violin') {
-                musicMsg = "🎻 عزفتِ على الكمان الفكتوري ألحان الشجن والأناقة الملكية؛ فبهرتِ كل ضيوف القصر!";
-            } else {
-                musicMsg = "🎶 أبدعتِ في العزف على آلة العود العربي الأصيل؛ فطرب الحاضرون على أوتار الشرق الساحرة وحصلتِ على مكافأة مالية!";
-            }
-
-            money += 800;
-            fame += 15;
-            updateStats();
-            document.getElementById('musicResponse').innerHTML = musicMsg;
-            speakText("معزوفة موسيقية رائعة وساحرة!");
-        }
-
-        function doJobOrHobby() {
-            let job = document.getElementById('jobChoice').value;
-            let earned = 0;
-            let resMsg = "";
-
-            if (job === 'painter') {
-                earned = 1200;
-                resMsg = "🎨 أنهيتِ لوحة بورتريه زيتية بأسلوب فكتوري مذهل! بيعت اللوحة بمزاد القصر وربحتِ 1,200 دولار.";
-            } else if (job === 'writer') {
-                earned = 3000;
-                resMsg = "🖋️ نشرتِ روايتكِ الأدبية الجديدة التي حققت مبيعات قياسية في العاصمة! دخل رصيدكِ 3,000 دولار.";
-            } else {
-                earned = 7000;
-      <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إمبراطورية العصر الفكتوري والألحان الهادئة 👑🎻</title>
-    <style>
-        body {
-            background: linear-gradient(135deg, #2c161c, #4a2330, #1f1117);
-            color: #f3e5f5;
-            font-family: Georgia, Tahoma, serif;
-            text-align: center;
-            padding: 10px;
-            margin: 0;
-            overflow-x: hidden;
-        }
-        .container {
-            background-color: #361c27;
-            display: inline-block;
-            padding: 20px;
-            border-radius: 35px;
-            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.4);
-            max-width: 520px;
-            width: 100%;
-            border: 5px solid #d4af37;
-            box-sizing: border-box;
-            position: relative;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-        .developer-note {
-            background: linear-gradient(to right, #4a2330, #2c161c);
-            border: 2px dashed #d4af37;
-            padding: 12px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            color: #ffd700;
-            font-size: 13px;
-            font-weight: bold;
-            line-height: 1.6;
-        }
-        h1 {
-            color: #ffd700;
-            font-size: 21px;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 4px #000;
-        }
-        h3 {
-            color: #ff80bf;
-            font-size: 15px;
-            margin-top: 18px;
-            border-bottom: 2px dotted #d4af37;
-            padding-bottom: 5px;
-        }
-        p {
-            color: #e0d1dc;
-            font-size: 13px;
-        }
-        input, select {
-            padding: 10px;
-            font-size: 13px;
-            border-radius: 12px;
-            border: 2px solid #d4af37;
-            background-color: #211018;
-            color: #fff;
-            text-align: center;
-            width: 88%;
-            margin-bottom: 10px;
-            outline: none;
-            box-sizing: border-box;
-        }
-        .btn {
-            background: linear-gradient(45deg, #d4af37, #aa771c);
-            color: #fff;
-            padding: 11px 15px;
-            border: none;
-            border-radius: 12px;
-            font-size: 13px;
-            cursor: pointer;
-            font-weight: bold;
-            display: block;
-            margin: 0 auto 10px auto;
-            width: 92%;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-            transition: 0.3s;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-        .box-result {
-            background-color: #211018;
-            color: #ffd700;
-            border: 1px dashed #d4af37;
-            padding: 12px;
-            border-radius: 12px;
-            margin-top: 10px;
-            font-size: 13px;
-            font-weight: bold;
-            min-height: 35px;
-            text-align: right;
-            line-height: 1.6;
-        }
-        .section-box {
-            margin-top: 18px;
-            border-top: 2px dashed #4a2330;
-            padding-top: 15px;
-        }
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            font-size: 11px;
-            font-weight: bold;
-            background: #211018;
-            padding: 10px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            color: #ffd700;
-            border: 1px solid #d4af37;
-        }
-        .item-card {
-            background-color: #211018;
-            border: 1.5px solid #d4af37;
-            border-radius: 12px;
-            padding: 9px 12px;
-            margin-top: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            color: #fff;
-        }
-        .victorian-face-box {
-            background: linear-gradient(135deg, #211018, #3b1d28);
-            border: 3px solid #d4af37;
-            border-radius: 25px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.3);
-        }
-        #charAvatar {
-            font-size: 65px;
-            margin: 5px 0;
-            animation: floatFace 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
-        }
-        @keyframes floatFace {
-            0% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-5px) scale(1.03); }
-            100% { transform: translateY(0px) scale(1); }
-        }
-    </style>
-</head>
-<body>
-
     <div class="container">
-        <!-- رسالة الإشراف -->
-        <div class="developer-note">
-            🏛️ إمبراطورية القصور الفكتورية برعاية البطلة <b>نور الزهراء الزبيدي</b> 👑✨
+        <!-- شريط تغيير اللغات (عربي / English) -->
+        <div class="top-bar">
+            <button class="lang-btn" onclick="switchLanguage('ar')">🇸🇦 العربية</button>
+            <button class="lang-btn" onclick="switchLanguage('en')">🇬🇧 English</button>
         </div>
 
-        <h1>🌹 إمبراطورية القصور الفكتورية والآداب 🌹</h1>
-        <p>عشِ سحر العصر الفكتوري، استمع للألحان الهادئة، ونظمِ الشعر العربي! ✨</p>
+        <!-- رسالة المبرمجة المحفزة للفتيات الفاخرة -->
+        <div class="developer-note" id="devNoteText">
+            🌸 رسالة ملهمة من المبرمجة الإمبراطورية <b>نور الزهراء الزبيدي</b>:<br>
+            "إلى كل فتيات كوكب زمرد الرائعات، أنتن لستن مجرد لاعبات في هذا العالم، بل أنتن صانعات المجد والابداع والقوة! لا حدود لطموحاتكن، فاصنعن إمبراطوريتكن الخاصة بكل ثقة وشجاعة وتألقن دائماً في قمة النجاح. أتمنى الكم يوم سعيد! 👑💖💎"
+        </div>
+
+        <h1 id="mainTitle">💎 كوكب زمرد الملكي المفتوح 💎</h1>
+        <p id="mainSubtitle">العالم الإمبراطوري المتكامل: تفاعلات توم المتكلم، أزياء، وظائف بلا نهاية، وأوقات حية! ✨</p>
         
+        <!-- المؤشرات الحية المتطورة (تركيز الحالة النفسية والأصدقاء) -->
         <div class="stats">
-            <span id="moneyStat">💵 الخزينة: $5,000</span>
-            <span id="cultureStat">📜 الثقافة: 40%</span>
-            <span id="fameStat">✨ الشهرة: 30%</span>
+            <span id="moneyStat">💵 الخزينة: $15,000</span>
+            <span id="psycheStat">💖 المزاج النفسي: مذهل (100%)</span>
+            <span id="friendStat">👭 الصديقات المتفاعلات: 3 ملكات</span>
         </div>
 
-        <!-- قسم مشغل الموسيقى الهادئة داخل اللعبة (جديد كلياً) -->
-        <div class="section-box" style="background: #211018; border-radius: 20px; padding: 12px; margin-top: 0; border: 2px solid #d4af37;">
-            <p style="color: #ffd700; font-weight: bold; margin-top: 0;">🎶 مشغل الألحان الهادئة الملكية (Ambient Music) 🎹</p>
-            <p style="font-size: 11px; color: #ff80bf;">استمع لمعزوفة بيانو فكتورية ناعمة تعمل في الخلفية أثناء اللعب:</p>
-            <button class="btn" style="background: linear-gradient(45deg, #800020, #d4af37);" onclick="toggleGameMusic()">▶ تشغيل الأغنية الهادئة 🎵</button>
-            <button class="btn" style="background: linear-gradient(45deg, #333, #555); margin-top: 4px;" onclick="stopGameMusic()">⏹ إيقاف الموسيقى 🔇</button>
-            <div id="musicPlayerStatus" class="box-result" style="margin-top: 8px; font-size: 12px;">الموسيقى متوقفة. اضغطي للتشغيل! 🎼</div>
-        </div>
-
-        <!-- قسم الوجه الفكتوري الراقي والأنيق -->
-        <div class="victorian-face-box">
-            <p style="color: #ffd700; font-weight: bold; margin-top:0;">النبيلة الفكتورية (الأميرة صوفيا) 🎨👑</p>
-            <div id="charAvatar">👸🏻🌹</div>
-            <p id="charName" style="color: #ff80bf; font-weight: bold; margin: 2px;">سيدة القصر الملكي الفكتوري</p>
-            <p id="charSpeech" style="font-weight: bold; color: #fff; font-size: 12px;">أهلاً بكِ في صالوني الأدبي الفاخر، حيث يلتقي الشعر العذب بالموسيقى الخالدة.</p>
+        <!-- 1. مميزات "توم المتكلم" التفاعلية -->
+        <div class="tom-face-box">
+            <p style="color: #ffd700; font-weight: bold; margin-top:0;" id="charTitle">🐱 الأميرة صوفيا التفاعلية (نمط توم المتكلم) 👑</p>
+            <p style="font-size: 11px; color: #ff80bf;" id="charSub">اضغطي على الوجه للتدغدغ، أو اكتبي نصاً لتعيده الأميرة بصوت لطيف!</p>
             
-            <div style="display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; margin-top: 8px;">
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #800020;" onclick="switchFace('lady')">الأميرة 👸🏻</button>
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #4a2330;" onclick="switchFace('poet')">الشاعرة 📜</button>
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #5c3a21;" onclick="switchFace('musician')">العازفة 🎻</button>
-                <button class="btn" style="width: 97%; margin: 4px; background: linear-gradient(45deg, #d4af37, #800020);" onclick="speakFaceVoice()">🎤 استمعي لصوت السيدة الملكية 🔊</button>
+            <div id="tomAvatar" onclick="touchTomFace()">👸🏻🌹</div>
+            
+            <input type="text" id="repeatInput" placeholder="اكتبي شيئاً لتعيده الأميرة صوفيا...">
+            <button class="btn" style="background: linear-gradient(45deg, #e67e22, #d35400);" onclick="repeatAfterMe()" id="btnRepeat">🗣️ اجعلي الأميرة تعيد كلامكِ (توم المتكلم) 🔊</button>
+            <div id="tomResponse" class="box-result" style="font-size: 12px;">أنا بانتظار كلامكِ لأعيده فوراً بأسلوب توم اللطيف! 🎤✨</div>
+        </div>
+
+        <!-- 2. غرفة خزانة الملابس والأزياء الملكية الفاخرة -->
+        <div class="section-box" style="background: #190a11; border-radius: 20px; padding: 12px; border: 2px solid #d4af37;">
+            <p style="color: #ffd700; font-weight: bold; margin-top: 0;" id="outfitTitle">👗 خزانة أزياء كوكب زمرد الملكية الفاخرة</p>
+            <select id="outfitChoice">
+                <option value="royal" id="optRoyal">👑 فستان الأميرة الفكتوري الذهبي (الرسمي)</option>
+                <option value="emerald" id="optEmerald">💎 فستان زمردة الساحر المرصع بالألماس</option>
+                <option value="poet" id="optPoet">📜 عباءة شاعرة البلاط الأنيقة</option>
+                <option value="casual" id="optCasual">🌸 أزياء كوكب زمرد العصرية المريحة</option>
+            </select>
+            <button class="btn" style="background: linear-gradient(45deg, #8e44ad, #9b59b6);" onclick="changeOutfit()" id="btnOutfit">ارتدي الزي الجديد وزدْ شهرتكِ 💃✨</button>
+            <div id="outfitResponse" class="box-result" style="font-size: 12px;">اختاري زياً يليق بمقامكِ الملكي! 👑</div>
+        </div>
+
+        <!-- 3. مايك المراسلة الصوتية الفاخر -->
+        <div class="section-box" style="background: #190a11; border-radius: 20px; padding: 12px; border: 2px solid #d4af37;">
+            <p style="color: #ffd700; font-weight: bold; margin-top: 0;" id="micTitle">🎤 مايك كوكب زمرد الصوتي (البث المباشر)</p>
+            <button class="btn" style="background: linear-gradient(45deg, #27ae60, #2ecc71);" onclick="startMic()" id="btnMicStart">🎙️ فتح المايك والتحدث الآن</button>
+            <button class="btn" style="background: linear-gradient(45deg, #c0392b, #e74c3c); margin-top: 4px;" onclick="stopMic()" id="btnMicStop">⏹ إيقاف المايك تماماً 🔇</button>
+            <div id="micStatus" class="box-result" style="margin-top: 8px; font-size: 12px;">المايك متوقف. اضغطي للبدء بالتحدث! 🎙️</div>
+        </div>
+
+        <!-- 4. مشغل الموسيقى الملكية الهادئة والمتقدمة -->
+        <div class="section-box" style="background: #190a11; border-radius: 20px; padding: 12px; border: 2px solid #d4af37;">
+            <p style="color: #ffd700; font-weight: bold; margin-top: 0;" id="musicTitle">🎶 مشغل الألحان الفكتورية والهادئة (معزوفات متعددة) 🎹</p>
+            <select id="musicStyleChoice">
+                <option value="piano" id="optPiano">🎹 معزوفة البيانو الكلاسيكية الهادئة</option>
+                <option value="violin" id="optViolin">🎻 ألحان الكمان الفكتوري الرومانسية</option>
+                <option value="oud" id="optOud">🎶 أوتار العود العربي الملكي السحرية</option>
+            </select>
+            <button class="btn" style="background: linear-gradient(45deg, #800020, #d4af37);" onclick="toggleGameMusic()" id="btnMusicPlay">▶ تشغيل المعزوفة المختارة 🎵</button>
+            <button class="btn" style="background: linear-gradient(45deg, #333, #555); margin-top: 4px;" onclick="stopGameMusic()" id="btnMusicStop">⏹ إيقاف الموسيقى 🔇</button>
+            <div id="musicPlayerStatus" class="box-result" style="margin-top: 8px; font-size: 12px;">الموسيقى متوقفة. 🎼</div>
+        </div>
+
+        <!-- 🌟 5. الإضافات الملكية الجديدة المقترحة بالكامل -->
+
+        <!-- أ. مطعم الأميرات ومقاهي المزاج العالية -->
+        <div class="section-box" style="background: #190a11; border-radius: 20px; padding: 14px; border: 2px solid #ffd700;">
+            <h3 style="margin-top:0;" id="restaurantHeader">🍽️ مطعم الأميرات ومقاهي المزاج العالي (مع الصديقات)</h3>
+            <p style="font-size: 11px; color: #ff80bf;" id="restaurantSub">اطلبي أشهى الأطباق ومشروبات الشاي الملكي لرفع المزاج النفسي مباشرة إلى 100%!</p>
+            <select id="restaurantChoice">
+                <option value="royal_tea" id="r1">☕ شاي الورد الملكي الفاخر مع الكيك الفرنسي ($300)</option>
+                <option value="diamond_cake" id="r2">🍰 كعكة الألماس السحرية المفرحة ($600)</option>
+                <option value="emerald_feast" id="r3">🍇 وليمة كوكب زمرد الكبرى للصديقات ($1,500)</option>
+            </select>
+            <button class="btn" style="background: linear-gradient(45deg, #e67e22, #f39c12);" onclick="orderFeast()" id="btnOrderRest">اطلبي الوجبة واحتفلي مع الصديقات 🍰👑</button>
+            <div id="restaurantResponse" class="box-result" style="font-size: 12px;">اطلبي طعامكِ المفضل واجعلي صديقاتكِ يستمتعن بالوليمة! 🍽️✨</div>
+        </div>
+
+        <!-- ب. تحدي الأسرار الملكية السحرية بين الصديقات -->
+        <div class="section-box" style="background: #190a11; border-radius: 20px; padding: 14px; border: 2px solid #ffd700;">
+            <h3 style="margin-top:0;" id="secretHeader">💌 صندوق الرسائل السرية بين الصديقات (تختفي بعد القراءة)</h3>
+            <input type="text" id="secretInput" placeholder="اكتبي سراً لطيفاً لصديقاتكِ يختفي بعد قراءته...">
+            <button class="btn" style="background: linear-gradient(45deg, #8e44ad, #9b59b6);" onclick="sendSecretMsg()" id="btnSecretSend">أرسلي السر السحري 🤫💎</button>
+            <div id="secretResponse" class="box-result" style="font-size: 12px;">الرسائل السرية تختفي بسحر الكوكب فور قراءتها للحفاظ على الخصوصية! 🌸</div>
+        </div>
+
+        <!-- ج. استوديو التصوير الفكتوري الجماعي -->
+        <div class="section-box" style="background: #190a11; border-radius: 20px; padding: 14px; border: 2px solid #ffd700;">
+            <h3 style="margin-top:0;" id="studioHeader">📸 استوديو التصوير الفكتوري الجماعي للإمبراطورية</h3>
+            <select id="studioFrame">
+                <option value="gold_frame" id="st1">👑 إطار الذهب الملكي المرصع بالألماس</option>
+                <option value="rose_frame" id="st2">🌹 إطار الورود الزمردية الساحرة</option>
+            </select>
+            <button class="btn" style="background: linear-gradient(45deg, #2980b9, #3498db);" onclick="takeGroupPhoto()" id="btnStudio">التقاط صورة جماعية مع الصديقات 📸✨</button>
+            <div id="studioResponse" class="box-result" style="font-size: 12px;">تم التقاط الصورة الجماعية بنجاح وأضيفت لمعرض ذكريات القصر! 🖼️</div>
+        </div>
+
+        <!-- د. حديقة الحيوانات الأليفة الملكية -->
+        <div class="section-box" style="background: #190a11; border-radius: 20px; padding: 14px; border: 2px solid #ffd700;">
+            <h3 style="margin-top:0;" id="petHeader">🐾 حديقة الحيوانات الأليفة الملكية النادرة</h3>
+            <select id="petChoice">
+                <option value="white_cat" id="pt1">🐱 قطة القصر البيضاء المدللة (تمنحكِ $500 يومياً)</option>
+                <option value="golden_bunny" id="pt2">🐰 أرنب الذهب السحري (يرفع المزاج الفوري)</option>
+                <option value="magic_butterfly" id="pt3">🦋 فراشات زمرد الملونة (تزيد الصديقات نشاطاً)</option>
+            </select>
+            <button class="btn" style="background: linear-gradient(45deg, #27ae60, #2ecc71);" onclick="adoptPet()" id="btnPet">تبني الحيوان الأليف واعتني به 🐾💖</button>
+            <div id="petResponse" class="box-result" style="font-size: 12px;">اكتسبي رفيقاً لطيفاً يملأ قصركِ بالبهجة والنشاط! ✨</div>
+        </div>
+
+        <!-- 6. قسم دردشة القصر الحرة مع الروبوت الذكي -->
+        <div class="section-box">
+            <h3 id="robotHeader">🤖 محادثة حرة مع روبوت القصر الفكتوري</h3>
+            <input type="text" id="robotInput" placeholder="اكتبي سؤالكِ للروبوت هنا...">
+            <button class="btn" onclick="chatWithRobot()" id="btnRobotSend">أرسلي للروبوت 💬</button>
+            <div id="robotResponse" class="box-result">الروبوت مستعد لمساعدتكِ طوال الوقت في عالمك المفتوح! ✨</div>
+        </div>
+
+        <!-- 7. قسم التواصل الاجتماعي ومكتبة المبرمجة المباشرة للفتيات (مع ظهور الصديقات النشطات) -->
+        <div class="section-box">
+            <h3 id="socialHeader">🌸 شبكة التواصل وعرض أعمال الفتيات (ظهور الصديقات الملكيات)</h3>
+            <textarea id="girlChatInput" rows="2" placeholder="اكتبي عملكِ أو رسالتكِ لصديقاتكِ وللمبرمجة..."></textarea>
+            <button class="btn" style="background: linear-gradient(45deg, #9b59b6, #8e44ad);" onclick="sendGirlMessage()" id="btnSocialSend">انشري عملكِ للكوكب وابعثيه للمبرمجة 💌</button>
+            <div id="girlsChatWall" class="box-result">
+                <span id="wallDefaultOwner"><b>ملك الكوكب (أنتِ):</b> مرحباً بكل الفتيات الرائعات في كوكبنا الأبدي! 👑</span><br>
+                <b>نور الزهراء (المبرمجة):</b> الكوكب يرحب بكل الإبداعات النسائية المذهلة! 🌸<br>
+                <b>👑 الأميرة سارة:</b> "يا بنات تعالوا نحتفل بقصر الألماس الجديد! المزاج صار 100%!" ✨<br>
+                <b>💎 الملكة مريم:</b> "أنا دي أسمع معزوفة البيانو ومعي صديقتي نور، السعادة تغمرنا!" 💖<br>
+                <b>✨ الأميرة ليلى:</b> "أفضل كوكب بالعالم، رفعت حالتي النفسية للسما من الضحك واللعب معكن!" 🌷
+            </div>
+
+            <!-- صندوق الوارد الخاص بالمبرمجة -->
+            <div style="margin-top: 15px; background: #1f0b12; border: 2px solid #d4af37; border-radius: 14px; padding: 12px; text-align: inherit;">
+                <p style="color: #ffd700; font-weight: bold; margin-top:0; font-size: 13px;" id="inboxTitle">📥 صندوق وارد المبرمجة (ما ترسله الفتيات إليكِ مباشرة):</p>
+                <div id="developerInbox" class="box-result" style="background: #12050b; min-height: 50px; font-size: 12px; color: #ff80bf;">
+                    لم ترسل أي فتاة رسالة خاصة لكِ حتى الآن. كل ما يُرسل سيظهر هنا لحظياً لتطلع عليه المبرمجة! 👁️✨
+                </div>
             </div>
         </div>
 
-        <!-- 1. قسم الشعر العربي الأصيل -->
+        <!-- 8. سوق الهدايا والألماس الملكي الفاخر الجديد -->
         <div class="section-box">
-            <h3>📜 ديوان الشعر العربي والفصيح</h3>
-            <select id="poetryChoice">
-                <option value="mutanabi">📜 بيت المتنبي: (وَإِذا كانتِ النُفوسُ كِباراً... تَعِبت في مُرادِها الأجسامُ)</option>
-                <option value="antara">🌹 عيون عنترة: (وَلَقَد ذَكَرتُكِ وَالرِماحُ نواهِلٌ... مِنّي وَبيضُ الهِندِ تقطُرُ مِن دَمي)</option>
-                <option value="shawqi">✨ أمير الشعراء أحمد شوقي: (قُم للمُعَلِّمِ وَفِّهِ التَبجيلا... كادَ المُعَلِّمُ أن يَكونَ رَسولا)</option>
+            <h3 id="giftHeader">🎁 سوق الهدايا والألماس الملكي الفاخر الجديد</h3>
+            <select id="giftChoice">
+                <option value="crown" id="g1">👑 تاج الماس فكتوري ملكي ($1,000)</option>
+                <option value="bouquet" id="g2">💐 باقة ورد زمردي نادرة ($500)</option>
+                <option value="castle" id="g3">🏰 قصر ملكي متنقل للصديقة ($5,000)</option>
+                <option value="diamond_perfume" id="g4">💎 عطر الزمرد الملكي المرصع بالياقوت ($3,500)</option>
+                <option value="golden_carriage" id="g5">🎠 عربة ملكية ذهبية مزخرفة بالورود ($10,000)</option>
             </select>
-            <button class="btn" onclick="recitePoetry()">ألقِ الشعر العربي واكسبِ هيبة وثقافة 🖋️🌟</button>
-            <div id="poetryResponse" class="box-result">اختاري بيتاً شعرياً وانشري بلاغتكِ في أرجاء القصر! 📜</div>
-        </div>
-
-        <!-- 2. صالون الموسيقى الكلاسيكية -->
-        <div class="section-box">
-            <h3>🎻 صالون الموسيقى الكلاسيكية والشرقية</h3>
-            <select id="musicChoice">
-                <option value="piano">🎹 العزف المنفرد على البيانو الملكي (معزوفة بتهوفن الخالدة)</option>
-                <option value="violin">🎻 سحر الكمان الفكتوري (ألحان الشجن والأناقة)</option>
-                <option value="oud">🎶 العود العربي الأصيل (طرب شرقي أصيل يملأ القصور)</option>
-            </select>
-            <button class="btn" style="background: linear-gradient(45deg, #800020, #d4af37);" onclick="playMusic()">ابدئي العزف واجذبي الحاضرين 🎵💖</button>
-            <div id="musicResponse" class="box-result">دعي الألحان الساحرة تصدح في أرجاء الصالون الملكي! 🎶</div>
-        </div>
-
-        <!-- 3. قسم الوظائف والهوايات الفاخرة -->
-        <div class="section-box">
-            <h3>💼 الوظائف والهوايات الفكتورية</h3>
-            <select id="jobChoice">
-                <option value="painter">🎨 هواية الرسم الزيتي ورسم لوحات البورتريه ($1,200)</option>
-                <option value="writer">🖋️ وظيفة تأليف الروايات والكتب الأدبية ($3,000)</option>
-                <option value="curator">🏛️ مسؤولة ومحافظة المتحف الملكي التاريخي ($7,000)</option>
-            </select>
-            <button class="btn" onclick="doJobOrHobby()">مارسي الهواية أو الوظيفة واربحي الذهب 🪙⚡</button>
-            <div id="jobResponse" class="box-result">طوري مهاراتكِ ووظيفتكِ لتصبحي سيدة القصر الأولى! 💎</div>
-        </div>
-
-        <!-- سجل الإنجازات الملكية -->
-        <div class="section-box">
-            <h3>📜 سجل ألقاب وإنجازات القصر</h3>
-            <div class="item-card">
-                <span>👸🏻 مقعد النبيلات في القصر الفكتوري</span>
-                <span style="color: #ffd700; font-weight: bold;">مملوكة رسميّاً ✅</span>
-            </div>
-            <div id="palaceContainer"></div>
-        </div>
-    </div>
-
-    <script>
-        let money = 5000;
-        let culture = 40;
-        let fame = 30;
-        let faceMsg = "أهلاً بكِ في صالوني الأدبي الفاخر، حيث يلتقي الشعر العذب بالموسيقى الخالدة.";
-        let audioCtx = null;
-        let musicInterval = null;
-
-        function updateStats() {
-            document.getElementById('moneyStat').innerHTML = "💵 الخزينة: $" + money.toLocaleString();
-            document.getElementById('cultureStat').innerHTML = "📜 الثقافة: " + culture + "%";
-            document.getElementById('fameStat').innerHTML = "✨ الشهرة: " + fame + "%";
-        }
-
-        function speakText(text) {
-            if ('speechSynthesis' in window) {
-                let utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'ar-SA';
-                utterance.pitch = 1.1;
-                utterance.rate = 1.0;
-                window.speechSynthesis.speak(utterance);
-            }
-        }
-
-        function speakFaceVoice() {
-            speakText(faceMsg);
-        }
-
-        // تشغيل معزوفة بيانو هادئة آلياً داخل المتصفح (Web Audio API)
-        function toggleGameMusic() {
-            if (musicInterval) return;
-            
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-
-            // نغمات بيانو هادئة ومريحة (ترددات سلم كلاسيكي هادئ)
-            const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 392.00, 329.63];
-            let i = 0;
-
-            musicInterval = setInterval(() => {
-                if (!audioCtx) return;
-                let osc = audioCtx.createOscillator();
-                let gain = audioCtx.createGain();
-                
-                osc.type = 'sine'; // صوت ناعم وهادئ جداً يشبه صندوق الموسيقى
-                osc.frequency.setValueAtTime(notes[i], audioCtx.currentTime);
-                
-                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.0);
-                
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                
-                osc.start();
-                osc.stop(audioCtx.currentTime + 2.0);
-
-                i = (i + 1) % notes.length;
-            }, 1200);
-
-            document.getElementById('musicPlayerStatus').innerHTML = "🎶 تشغيل الأغنية الهادئة بنجاح... استمتعي بالأجواء الملكية 🎹✨";
-        }
-
-        function stopGameMusic() {
-            if (musicInterval) {
-                clearInterval(musicInterval);
-                musicInterval = null;
-            }
-            document.getElementById('musicPlayerStatus').innerHTML = "⏹ الموسيقى متوقفة. اضغطي للتشغيل مجدداً 🔇";
-        }
-
-        function switchFace(type) {
-            let avatar = document.getElementById('charAvatar');
-            let name = document.getElementById('charName');
-            let speech = document.getElementById('charSpeech');
-
-            if (type === 'lady') {
-                avatar.innerHTML = "👸🏻🌹";
-                name.innerHTML = "سيدة القصر الملكي الفكتوري";
-                faceMsg = "الأناقة والذوق الرفيع هما عنوان سيدات القصور الفكتورية.";
-            } else if (type === 'poet') {
-                avatar.innerHTML = "📜✨";
-                name.innerHTML = "شاعرة البلاط الملكي";
-                faceMsg = "البلاغة والشعر العربي هما روح الجمال وأصل الحكمة.";
-            } else if (type === 'musician') {
-                avatar.innerHTML = "🎻🎶";
-                name.innerHTML = "عازفة الأوركسترا الأولى";
-                faceMsg = "الموسيقى تغذي الروح وتفتح أبواب القلوب على مصراعيها.";
-            }
-            speech.innerHTML = faceMsg;
-            speakText(faceMsg);
-        }
-
-        function recitePoetry() {
-            let choice = document.getElementById('poetryChoice').value;
-            let textMsg = "";
-            let gainCulture = 15;
-
-            if (choice === 'mutanabi') {
-                textMsg = "📜 ألقيتِ بيت المتنبي بحماس بلاغي عظيم: (وَإِذا كانتِ النُفوسُ كِباراً... تَعِبت في مُرادِها الأجسامُ). تفاعل الحاضرون بإعجاب شديد!";
-            } else if (choice === 'antara') {
-                textMsg = "🌹 ألقيتِ أبيات عنترة بن شداد بصوت فصيح قوي: (وَلَقَد ذَكَرتُكِ وَالرِماحُ نواهِلٌ...). زادت هيبتكِ الثقافية!";
-            } else {
-                textMsg = "✨ ألقيتِ رائعة أمير الشعراء أحمد شوقي: (قُم للمُعَلِّمِ وَفِّهِ التَبجيلا...). صفق لكِ الجميع بحرارة!";
-            }
-
-            culture += gainCulture;
-            fame += 10;
-            money += 500;
-            updateStats();
-            document.getElementById('poetryResponse').innerHTML = textMsg;
-            speakText("إلقاء شعري ساحر وبليغ جداً!");
-        }
-
-        function playMusic() {
-            let choice = document.getElementById('musicChoice').value;
-            let musicMsg = "";
-
-            if (choice === 'piano') {
-                musicMsg = "🎹 عزفتِ على البيانو الملكي مقطوعة بتهوفن الخالدة؛ فامتزج سحر العصر الفكتوري بأجمل الألحان وغمرت المكان هالة من السكينة.";
-            } else if (choice === 'violin') {
-                musicMsg = "🎻 عزفتِ على الكمان الفكتوري ألحان الشجن والأناقة الملكية؛ فبهرتِ كل ضيوف القصر!";
-            } else {
-                musicMsg = "🎶 أبدعتِ في العزف على آلة العود العربي الأصيل؛ فطرب الحاضرون على أوتار الشرق الساحرة وحصلتِ على مكافأة مالية!";
-            }
-
-            money += 800;
-            fame += 15;
-            updateStats();
-            document.getElementById('musicResponse').innerHTML = musicMsg;
-            speakText("معزوفة موسيقية رائعة وساحرة!");
-        }
-
-        function doJobOrHobby() {
-            let job = document.getElementById('jobChoice').value;
-            let earned = 0;
-            let resMsg = "";
-
-            if (job === 'painter') {
-                earned = 1200;
-                resMsg = "🎨 أنهيتِ لوحة بورتريه زيتية بأسلوب فكتوري مذهل! بيعت اللوحة بمزاد القصر وربحتِ 1,200 دولار.";
-            } else if (job === 'writer') {
-                earned = 3000;
-                resMsg = "🖋️ نشرتِ روايتكِ الأدبية الجديدة التي حققت مبيعات قياسية في العاصمة! دخل رصيدكِ 3,000 دولار.";
-            } else {
-                earned = 7000;
-                resMsg = "🏛️ أدرتِ المتحف الملكي التاريخي بكفاءة عالية واكتشفتِ قطعاً أثرية نادرة! ربحتِ 7,000 دولار وارتفعت ثقافتكِ!";
-                culture += 25;
-            }
-
-            money += earned;
-            updateStats();
-            document.getElementById('jobResponse').innerHTML = resMsg;
-            speakText("عمل إبداعي متميز للغاية!");
-        }
-    </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إمبراطورية العصر الفكتوري والألحان الهادئة 👑🎻</title>
-    <style>
-        body {
-            background: linear-gradient(135deg, #2c161c, #4a2330, #1f1117);
-            color: #f3e5f5;
-            font-family: Georgia, Tahoma, serif;
-            text-align: center;
-            padding: 10px;
-            margin: 0;
-            overflow-x: hidden;
-        }
-        .container {
-            background-color: #361c27;
-            display: inline-block;
-            padding: 20px;
-            border-radius: 35px;
-            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.4);
-            max-width: 520px;
-            width: 100%;
-            border: 5px solid #d4af37;
-            box-sizing: border-box;
-            position: relative;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-        .developer-note {
-            background: linear-gradient(to right, #4a2330, #2c161c);
-            border: 2px dashed #d4af37;
-            padding: 12px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            color: #ffd700;
-            font-size: 13px;
-            font-weight: bold;
-            line-height: 1.6;
-        }
-        h1 {
-            color: #ffd700;
-            font-size: 21px;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 4px #000;
-        }
-        h3 {
-            color: #ff80bf;
-            font-size: 15px;
-            margin-top: 18px;
-            border-bottom: 2px dotted #d4af37;
-            padding-bottom: 5px;
-        }
-        p {
-            color: #e0d1dc;
-            font-size: 13px;
-        }
-        input, select {
-            padding: 10px;
-            font-size: 13px;
-            border-radius: 12px;
-            border: 2px solid #d4af37;
-            background-color: #211018;
-            color: #fff;
-            text-align: center;
-            width: 88%;
-            margin-bottom: 10px;
-            outline: none;
-            box-sizing: border-box;
-        }
-        .btn {
-            background: linear-gradient(45deg, #d4af37, #aa771c);
-            color: #fff;
-            padding: 11px 15px;
-            border: none;
-            border-radius: 12px;
-            font-size: 13px;
-            cursor: pointer;
-            font-weight: bold;
-            display: block;
-            margin: 0 auto 10px auto;
-            width: 92%;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-            transition: 0.3s;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-        .box-result {
-            background-color: #211018;
-            color: #ffd700;
-            border: 1px dashed #d4af37;
-            padding: 12px;
-            border-radius: 12px;
-            margin-top: 10px;
-            font-size: 13px;
-            font-weight: bold;
-            min-height: 35px;
-            text-align: right;
-            line-height: 1.6;
-        }
-        .section-box {
-            margin-top: 18px;
-            border-top: 2px dashed #4a2330;
-            padding-top: 15px;
-        }
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            font-size: 11px;
-            font-weight: bold;
-            background: #211018;
-            padding: 10px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            color: #ffd700;
-            border: 1px solid #d4af37;
-        }
-        .item-card {
-            background-color: #211018;
-            border: 1.5px solid #d4af37;
-            border-radius: 12px;
-            padding: 9px 12px;
-            margin-top: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            color: #fff;
-        }
-        .victorian-face-box {
-            background: linear-gradient(135deg, #211018, #3b1d28);
-            border: 3px solid #d4af37;
-            border-radius: 25px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.3);
-        }
-        #charAvatar {
-            font-size: 65px;
-            margin: 5px 0;
-            animation: floatFace 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
-        }
-        @keyframes floatFace {
-            0% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-5px) scale(1.03); }
-            100% { transform: translateY(0px) scale(1); }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <!-- رسالة الإشراف -->
-        <div class="developer-note">
-            🏛️ إمبراطورية القصور الفكتورية برعاية البطلة <b>نور الزهراء الزبيدي</b> 👑✨
-        </div>
-
-        <h1>🌹 إمبراطورية القصور الفكتورية والآداب 🌹</h1>
-        <p>عشِ سحر العصر الفكتوري، استمع للألحان الهادئة، ونظمِ الشعر العربي! ✨</p>
-        
-        <div class="stats">
-            <span id="moneyStat">💵 الخزينة: $5,000</span>
-            <span id="cultureStat">📜 الثقافة: 40%</span>
-            <span id="fameStat">✨ الشهرة: 30%</span>
-        </div>
-
-        <!-- قسم مشغل الموسيقى الهادئة داخل اللعبة (جديد كلياً) -->
-        <div class="section-box" style="background: #211018; border-radius: 20px; padding: 12px; margin-top: 0; border: 2px solid #d4af37;">
-            <p style="color: #ffd700; font-weight: bold; margin-top: 0;">🎶 مشغل الألحان الهادئة الملكية (Ambient Music) 🎹</p>
-            <p style="font-size: 11px; color: #ff80bf;">استمع لمعزوفة بيانو فكتورية ناعمة تعمل في الخلفية أثناء اللعب:</p>
-            <button class="btn" style="background: linear-gradient(45deg, #800020, #d4af37);" onclick="toggleGameMusic()">▶ تشغيل الأغنية الهادئة 🎵</button>
-            <button class="btn" style="background: linear-gradient(45deg, #333, #555); margin-top: 4px;" onclick="stopGameMusic()">⏹ إيقاف الموسيقى 🔇</button>
-            <div id="musicPlayerStatus" class="box-result" style="margin-top: 8px; font-size: 12px;">الموسيقى متوقفة. اضغطي للتشغيل! 🎼</div>
-        </div>
-
-        <!-- قسم الوجه الفكتوري الراقي والأنيق -->
-        <div class="victorian-face-box">
-            <p style="color: #ffd700; font-weight: bold; margin-top:0;">النبيلة الفكتورية (الأميرة صوفيا) 🎨👑</p>
-            <div id="charAvatar">👸🏻🌹</div>
-            <p id="charName" style="color: #ff80bf; font-weight: bold; margin: 2px;">سيدة القصر الملكي الفكتوري</p>
-            <p id="charSpeech" style="font-weight: bold; color: #fff; font-size: 12px;">أهلاً بكِ في صالوني الأدبي الفاخر، حيث يلتقي الشعر العذب بالموسيقى الخالدة.</p>
-            
-            <div style="display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; margin-top: 8px;">
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #800020;" onclick="switchFace('lady')">الأميرة 👸🏻</button>
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #4a2330;" onclick="switchFace('poet')">الشاعرة 📜</button>
-                <button class="btn" style="width: 31%; margin: 2px; background-color: #5c3a21;" onclick="switchFace('musician')">العازفة 🎻</button>
-                <button class="btn" style="width: 97%; margin: 4px; background: linear-gradient(45deg, #d4af37, #800020);" onclick="speakFaceVoice()">🎤 استمعي لصوت السيدة الملكية 🔊</button>
-            </div>
-        </div>
-
-        <!-- 1. قسم الشعر العربي الأصيل -->
-        <div class="section-box">
-            <h3>📜 ديوان الشعر العربي والفصيح</h3>
-            <select id="poetryChoice">
-                <option value="mutanabi">📜 بيت المتنبي: (وَإِذا كانتِ النُفوسُ كِباراً... تَعِبت في مُرادِها الأجسامُ)</option>
-                <option value="antara">🌹 عيون عنترة: (وَلَقَد ذَكَرتُكِ وَالرِماحُ نواهِلٌ... مِنّي وَبيضُ الهِندِ تقطُرُ مِن دَمي)</option>
-                <option value="shawqi">✨ أمير الشعراء أحمد شوقي: (قُم للمُعَلِّمِ وَفِّهِ التَبجيلا... كادَ المُعَلِّمُ أن يَكونَ رَسولا)</option>
-            </select>
-            <button class="btn" onclick="recitePoetry()">ألقِ الشعر العربي واكسبِ هيبة وثقافة 🖋️🌟</button>
-            <div id="poetryResponse" class="box-result">اختاري بيتاً شعرياً وانشري بلاغتكِ في أرجاء القصر! 📜</div>
-        </div>
-
-        <!-- 2. صالون الموسيقى الكلاسيكية -->
-        <div class="section-box">
-            <h3>🎻 صالون الموسيقى الكلاسيكية والشرقية</h3>
-            <select id="musicChoice">
-                <option value="piano">🎹 العزف المنفرد على البيانو الملكي (معزوفة بتهوفن الخالدة)</option>
-                <option value="violin">🎻 سحر الكمان الفكتوري (ألحان الشجن والأناقة)</option>
-                <option value="oud">🎶 العود العربي الأصيل (طرب شرقي أصيل يملأ القصور)</option>
-            </select>
-            <button class="btn" style="background: linear-gradient(45deg, #800020, #d4af37);" onclick="playMusic()">ابدئي العزف واجذبي الحاضرين 🎵💖</button>
-            <div id="musicResponse" class="box-result">دعي الألحان الساحرة تصدح في أرجاء الصالون الملكي! 🎶</div>
-        </div>
-
-        <!-- 3. قسم الوظائف والهوايات الفاخرة -->
-        <div class="section-box">
-            <h3>💼 الوظائف والهوايات الفكتورية</h3>
-            <select id="jobChoice">
-                <option value="painter">🎨 هواية الرسم الزيتي ورسم لوحات البورتريه ($1,200)</option>
-                <option value="writer">🖋️ وظيفة تأليف الروايات والكتب الأدبية ($3,000)</option>
-                <option value="curator">🏛️ مسؤولة ومحافظة المتحف الملكي التاريخي ($7,000)</option>
-            </select>
-            <button class="btn" onclick="doJobOrHobby()">مارسي الهواية أو الوظيفة واربحي الذهب 🪙⚡</button>
-            <div id="jobResponse" class="box-result">طوري مهاراتكِ ووظيفتكِ لتصبحي سيدة القصر الأولى! 💎</div>
-        </div>
-
-        <!-- سجل الإنجازات الملكية -->
-        <div class="section-box">
-            <h3>📜 سجل ألقاب وإنجازات القصر</h3>
-            <div class="item-card">
-                <span>👸🏻 مقعد النبيلات في القصر الفكتوري</span>
-                <span style="color: #ffd700; font-weight: bold;">مملوكة رسميّاً ✅</span>
-            </div>
-            <div id="palaceContainer"></div>
-        </div>
-    </div>
-
-    <script>
-        let money = 5000;
-        let culture = 40;
-        let fame = 30;
-        let faceMsg = "أهلاً بكِ في صالوني الأدبي الفاخر، حيث يلتقي الشعر العذب بالموسيقى الخالدة.";
-        let audioCtx = null;
-        let musicInterval = null;
-
-        function updateStats() {
-            document.getElementById('moneyStat').innerHTML = "💵 الخزينة: $" + money.toLocaleString();
-            document.getElementById('cultureStat').innerHTML = "📜 الثقافة: " + culture + "%";
-            document.getElementById('fameStat').innerHTML = "✨ الشهرة: " + fame + "%";
-        }
-
-        function speakText(text) {
-            if ('speechSynthesis' in window) {
-                let utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'ar-SA';
-                utterance.pitch = 1.1;
-                utterance.rate = 1.0;
-                window.speechSynthesis.speak(utterance);
-            }
-        }
-
-        function speakFaceVoice() {
-            speakText(faceMsg);
-        }
-
-        // تشغيل معزوفة بيانو هادئة آلياً داخل المتصفح (Web Audio API)
-        function toggleGameMusic() {
-            if (musicInterval) return;
-            
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-
-            // نغمات بيانو هادئة ومريحة (ترددات سلم كلاسيكي هادئ)
-            const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 392.00, 329.63];
-            let i = 0;
-
-            musicInterval = setInterval(() => {
-                if (!audioCtx) return;
-                let osc = audioCtx.createOscillator();
-                let gain = audioCtx.createGain();
-                
-                osc.type = 'sine'; // صوت ناعم وهادئ جداً يشبه صندوق الموسيقى
-                osc.frequency.setValueAtTime(notes[i], audioCtx.currentTime);
-                
-                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.0);
-                
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                
-                osc.start();
-                osc.stop(audioCtx.currentTime + 2.0);
-
-                i = (i + 1) % notes.length;
-            }, 1200);
-
-            document.getElementById('musicPlayerStatus').innerHTML = "🎶 تشغيل الأغنية الهادئة بنجاح... استمتعي بالأجواء الملكية 🎹✨";
-        }
-
-        function stopGameMusic() {
-            if (musicInterval) {
-                clearInterval(musicInterval);
-                musicInterval = null;
-            }
-            document.getElementById('musicPlayerStatus').innerHTML = "⏹ الموسيقى متوقفة. اضغطي للتشغيل مجدداً 🔇";
-        }
-
-        function switchFace(type) {
-            let avatar = document.getElementById('charAvatar');
-            let name = document.getElementById('charName');
-            let speech = document.getElementById('charSpeech');
-
-            if (type === 'lady') {
-                avatar.innerHTML = "👸🏻🌹";
-                name.innerHTML = "سيدة القصر الملكي الفكتوري";
-                faceMsg = "الأناقة والذوق الرفيع هما عنوان سيدات القصور الفكتورية.";
-            } else if (type === 'poet') {
-                avatar.innerHTML = "📜✨";
-                name.innerHTML = "شاعرة البلاط الملكي";
-                faceMsg = "البلاغة والشعر العربي هما روح الجمال وأصل الحكمة.";
-            } else if (type === 'musician') {
-                avatar.innerHTML = "🎻🎶";
-                name.innerHTML = "عازفة الأوركسترا الأولى";
-                faceMsg = "الموسيقى تغذي الروح وتفتح أبواب القلوب على مصراعيها.";
-            }
-            speech.innerHTML = faceMsg;
-            speakText(faceMsg);
-        }
-
-        function recitePoetry() {
-            let choice = document.getElementById('poetryChoice').value;
-            let textMsg = "";
-            let gainCulture = 15;
-
-            if (choice === 'mutanabi') {
-                textMsg = "📜 ألقيتِ بيت المتنبي بحماس بلاغي عظيم: (وَإِذا كانتِ النُفوسُ كِباراً... تَعِبت في مُرادِها الأجسامُ). تفاعل الحاضرون بإعجاب شديد!";
-            } else if (choice === 'antara') {
-                textMsg = "🌹 ألقيتِ أبيات عنترة بن شداد بصوت فصيح قوي: (وَلَقَد ذَكَرتُكِ وَالرِماحُ نواهِلٌ...). زادت هيبتكِ الثقافية!";
-            } else {
-                textMsg = "✨ ألقيتِ رائعة أمير الشعراء أحمد شوقي: (قُم للمُعَلِّمِ وَفِّهِ التَبجيلا...). صفق لكِ الجميع بحرارة!";
-            }
-
-            culture += gainCulture;
-            fame += 10;
-            money += 500;
-            updateStats();
-            document.getElementById('poetryResponse').innerHTML = textMsg;
-            speakText("إلقاء شعري ساحر وبليغ جداً!");
-        }
-
-        function playMusic() {
-            let choice = document.getElementById('musicChoice').value;
-            let musicMsg = "";
-
-            if (choice === 'piano') {
-                musicMsg = "🎹 عزفتِ على البيانو الملكي مقطوعة بتهوفن الخالدة؛ فامتزج سحر العصر الفكتوري بأجمل الألحان وغمرت المكان هالة من السكينة.";
-            } else if (choice === 'violin') {
-                musicMsg = "🎻 عزفتِ على الكمان الفكتوري ألحان الشجن والأناقة الملكية؛ فبهرتِ كل ضيوف القصر!";
-            } else {
-                musicMsg = "🎶 أبدعتِ في العزف على آلة العود العربي الأصيل؛ فطرب الحاضرون على أوتار الشرق الساحرة وحصلتِ على مكافأة مالية!";
-            }
-
-            money += 800;
-            fame += 15;
-            updateStats();
-            document.getElementById('musicResponse').innerHTML = musicMsg;
-            speakText("معزوفة موسيقية رائعة وساحرة!");
-        }
-
-        function doJobOrHobby() {
-            let job = document.getElementById('jobChoice').value;
-            let earned = 0;
-            let resMsg = "";
-
-            if (job === 'painter') {
-                earned = 1200;
-                resMsg = "🎨 أنهيتِ لوحة بورتريه زيتية بأسلوب فكتوري مذهل! بيعت اللوحة بمزاد القصر وربحتِ 1,200 دولار.";
-            } else if (job === 'writer') {
-                earned = 3000;
-                resMsg = "🖋️ نشرتِ روايتكِ الأدبية الجديدة التي حققت مبيعات قياسية في العاصمة! دخل رصيدكِ 3,000 دولار.";
-            } else {
-                earned = 7000;
-                resMsg = "🏛️ أدرتِ المتحف الملكي التاريخي بكفاءة عالية واكتشفتِ قطعاً أثرية نادرة! ربحتِ 7,000 دولار وارتفعت ثقافتكِ!";
-                culture += 25;
-            }
-
-            money += earned;
-            updateStats();
-            document.getElementById('jobResponse').innerHTML = resMsg;
-            speakText("عمل إبداعي متميز للغاية!");
-        }
-    </script>
-
-</body>
-</html>
-resMsg = "🏛️ أدرتِ المتحف الملكي التاريخي بكفاءة عالية واكتشفتِ قطعاً أثرية نادرة! ربحتِ 7,000 دولار وارتفعت ثقافتكِ!";
-                culture += 25;
-            }
-
-            money += earned;
-            updateStats();
-            document.getElementById('jobResponse').innerHTML = resMsg;
-            speakText("عمل إبداعي متميز للغاية!");
-        }
-    </script>
-
-</body>
-</html>
+            <button class="btn" style="background: linear-gradient(45deg, #e91e63, #c2185b);" onclick="sendGift()" id="btnGiftSend">أرسلي الهدية الأسطورية الفاخرة 🎁💖</button>
+            <div id="giftResponse" class="box-result">أرسلي هدية فاخرة تضيء ق
