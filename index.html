@@ -1,104 +1,243 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>تطبيقي الأول - لعبة التخمين</title>
-    <style>
-        body {
-            background-color: #0d1117;
-            color: #ffffff;
-            font-family: Tahoma, sans-serif;
-            text-align: center;
-            padding-top: 50px;
-        }
-        .container {
-            background-color: #161b22;
-            display: inline-block;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
-            max-width: 400px;
-            width: 90%;
-            border: 1px solid #30363d;
-        }
-        h1 {
-            color: #58a6ff;
-            font-size: 24px;
-        }
-        p {
-            color: #8b949e;
-        }
-        input {
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 8px;
-            border: 1px solid #30363d;
-            background-color: #0d1117;
-            color: white;
-            text-align: center;
-            width: 70%;
-            margin-bottom: 15px;
-        }
-        .btn {
-            background-color: #238636;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-            display: block;
-            margin: 0 auto;
-            width: 80%;
-        }
-        .btn:hover {
-            background-color: #2ea043;
-        }
-        #result {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>كوكب زمرد - عالم هلو كيتي 🌸</title>
+  <style>
+    :root{
+      --bg: #ffb6c1;
+      --card: #fff0f5;
+      --accent: #ff69b4;
+      --accent-dark: #ff1493;
+      --text: #5a2a42;
+      --muted: #88436b;
+    }
+    html,body{height:100%}
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: Tahoma, "Segoe UI", system-ui, sans-serif;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    .container {
+      background-color: var(--card);
+      display: inline-block;
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(255, 105, 180, 0.25);
+      max-width: min(450px, 92vw);
+      width: 100%;
+      border: 3px solid var(--accent);
+      box-sizing: border-box;
+      direction: rtl; /* ensure controls are RTL */
+    }
+    h1 { color: #d71975; font-size: 22px; margin-bottom: 5px; }
+    h3 { color: #c71585; font-size: 18px; margin-top: 20px; }
+    p { color: var(--muted); font-size: 14px; margin: 8px 0; }
+    input[type="text"], textarea {
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 12px;
+      border: 2px solid var(--accent);
+      background-color: #ffffff;
+      color: var(--text);
+      text-align: center;
+      width: 85%;
+      margin-bottom: 10px;
+      outline: none;
+      direction: rtl;
+    }
+    .btn {
+      background-color: var(--accent-dark);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: bold;
+      display: block;
+      margin: 0 auto 10px auto;
+      width: 90%;
+      box-shadow: 0 4px 10px rgba(255, 20, 147, 0.3);
+      transition: background-color 0.18s ease;
+    }
+    .btn:hover { background-color: var(--accent); }
+    .btn.secondary { background-color: #db7093; }
+    .box-result {
+      background-color: #ffe4e1;
+      color: #c71585;
+      border: 1px dashed var(--accent);
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      min-height: 44px;
+      line-height: 1.4;
+      text-align: right;
+      direction: rtl;
+    }
+    .chat-section { margin-top: 20px; border-top: 2px dashed var(--accent); padding-top: 15px; }
+    @media (prefers-reduced-motion: reduce) {
+      .btn { transition: none; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>مرحباً بك في عالم البرمجة! 🚀</h1>
-        <p>جرب لعبة تخمين الرقم (من 1 إلى 5):</p>
-        
-        <input type="number" id="userGuess" min="1" max="5" placeholder="ادخل رقماً هنا">
-        <button class="btn" onclick="checkGuess()">تحقق من الرقم</button>
-        
-        <div id="result"></div>
+  <div class="container" role="main" aria-labelledby="pageTitle">
+    <h1 id="pageTitle">🌸 أهلاً بكِ في كوكب زمرد 🌸</h1>
+    <p>مملكة الفتيات اللطيفات وعالم هلو كيتي المميز! 🎀</p>
+
+    <!-- لعبة الألغاز -->
+    <h3>🧩 لعبة ألغاز كوكب زمرد</h3>
+    <p id="riddleText" aria-live="polite">جاري تحميل اللغز...</p>
+
+    <label for="riddleAnswer" class="sr-only" style="display:none">إجابة اللغز</label>
+    <input type="text" id="riddleAnswer" placeholder="اكتبي إجابتكِ هنا 🍓" autocomplete="off" aria-label="إجابة اللغز">
+    <button type="button" class="btn" id="checkBtn">تحقق من الإجابة</button>
+    <div id="riddleResult" class="box-result" role="status" aria-live="polite">فكرِي جيداً واكتبي الجواب! ✨</div>
+    <button type="button" class="btn secondary" id="nextBtn">لغز جديد 🌸</button>
+
+    <!-- دردشة -->
+    <div class="chat-section" aria-labelledby="chatTitle">
+      <h3 id="chatTitle">💬 دردشة هلو كيتي</h3>
+      <p>تحدثي مع كوكب زمرد وأرسلي رسالتكِ:</p>
+
+      <label for="chatInput" style="display:none">رسالة الدردشة</label>
+      <input type="text" id="chatInput" placeholder="اكتبي رسالتكِ هنا..." autocomplete="off" aria-label="رسالة الدردشة">
+      <button type="button" class="btn" id="sendBtn" style="background-color: var(--accent);">إرسال الرسالة 💌</button>
+      <div id="chatResponse" class="box-result" role="status" aria-live="polite">أنا هنا لأستمع إليكِ يا أميرة! 💖</div>
     </div>
+  </div>
 
-    <script>
-        // اختيار رقم عشوائي سري بين 1 و 5
-        let secretNumber = Math.floor(Math.random() * 5) + 1;
+  <script>
+    // ----- Utilities: normalize Arabic, escape HTML (prevent XSS) -----
+    const ARABIC_DIACRITICS = /[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED\u0640]/g;
 
-        function checkGuess() {
-            let guess = document.getElementById('userGuess').value;
-            let resultDiv = document.getElementById('result');
+    function normalizeArabic(s) {
+      if (!s) return "";
+      return String(s)
+        .toLowerCase()
+        .normalize('NFKC')
+        .replace(ARABIC_DIACRITICS, '')             // remove tashkeel & tatweel & related marks
+        .replace(/[\u0622\u0623\u0625]/g, 'ا')      // normalize alef variants to ا
+        .replace(/[\u0624]/g, 'و')                  // ؤ -> و (optional convenience)
+        .replace(/[\u0626]/g, 'ي')                  // ئ -> ي (makes matching forgiving)
+        .replace(/[^\u0600-\u06FF0-9a-z\s]/g, '')   // remove punctuation except Arabic/latin/nums/spaces
+        .trim();
+    }
 
-            if (guess === "") {
-                resultDiv.style.color = "#f85149";
-                resultDiv.innerHTML = "يرجى إدخال رقم أولاً! ⚠️";
-                return;
-            }
+    function escapeHTML(s) {
+      return String(s)
+        .replaceAll('&','&amp;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;')
+        .replaceAll('"','&quot;')
+        .replaceAll("'",'&#39;');
+    }
 
-            if (parseInt(guess) === secretNumber) {
-                resultDiv.style.color = "#3fb950";
-                resultDiv.innerHTML = "🎉 كفو! تخمينك صحيح 100%!";
-            } else {
-                resultDiv.style.color = "#f85149";
-                resultDiv.innerHTML = "❌ خطأ، الرقم السري كان: " + secretNumber + " (حاول مرة أخرى)";
-                // تغيير الرقم السري لتجربة جديدة
-                secretNumber = Math.floor(Math.random() * 5) + 1;
-            }
-        }
-    </script>
+    // ----- Riddles (answers normalized for robust matching) -----
+    const riddles = [
+      { q: "ما هو الشيء الذي إذا أكلته كله يفيدك، وإذا أكلت نصفه يموت؟ (حرف خفيف)", a: "سمسم" },
+      { q: "له عين واحدة ولكن لا يرى، فما هو؟", a: "الإبرة" },
+      { q: "شيء يسير معكِ طوال الوقت وكلما سرتِ خطوة يقطتعها معكِ، فما هو؟", a: "الظل" },
+      { q: "ما هو الشيء الذي كلما أخذتِ منه كبر وكلما وضعتِ فيه صغر؟", a: "الحفرة" }
+    ];
 
+    // Precompute normalized answers (supports case/diacritics differences)
+    riddles.forEach(r => r._norm = normalizeArabic(r.a));
+
+    let currentRiddleIndex = 0;
+
+    const riddleTextEl = document.getElementById('riddleText');
+    const riddleAnswerEl = document.getElementById('riddleAnswer');
+    const riddleResultEl = document.getElementById('riddleResult');
+    const checkBtn = document.getElementById('checkBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function loadRiddle() {
+      const r = riddles[currentRiddleIndex];
+      riddleTextEl.innerText = r.q;
+      riddleAnswerEl.value = "";
+      riddleAnswerEl.removeAttribute('aria-invalid');
+      riddleResultEl.innerText = "فكرِي جيداً واكتبي الجواب! ✨";
+      riddleAnswerEl.focus();
+    }
+
+    function checkRiddle() {
+      const userAns = riddleAnswerEl.value.trim();
+      if (!userAns) {
+        riddleResultEl.innerText = "يرجى كتابة إجابة أولاً يا بطلة! ⚠️";
+        riddleAnswerEl.setAttribute('aria-invalid','true');
+        riddleAnswerEl.focus();
+        return;
+      }
+      const normalizedUser = normalizeArabic(userAns);
+      const correctNorm = riddles[currentRiddleIndex]._norm;
+      if (normalizedUser === correctNorm) {
+        riddleResultEl.innerText = "🎉 كفو يا ذكية! إجابتكِ صحيحة 100%!";
+      } else {
+        riddleResultEl.innerText = "❌ محاولة لطيفة، لكن الإجابة غير صحيحة، حاولي مرة أخرى! 💕";
+      }
+    }
+
+    function nextRiddle() {
+      currentRiddleIndex = (currentRiddleIndex + 1) % riddles.length;
+      loadRiddle();
+    }
+
+    // ----- Chat -----
+    const chatReplies = [
+      "🌸 يا هلا بيج وبكلامج الحلو! منورة كوكب زمرد.",
+      "🎀 أحسنتِ الاختيار، أنتِ اليوم فتاة رائعة ومميزة!",
+      "✨ تذكري دائماً أن ابتسامتكِ تجعل العالم أجمَل يا أميرة.",
+      "🍓 واصلي تألقكِ ولا توقفي إبداعكِ أبداً!"
+    ];
+
+    const chatInputEl = document.getElementById('chatInput');
+    const chatResponseEl = document.getElementById('chatResponse');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function sendChat() {
+      const text = chatInputEl.value.trim();
+      if (!text) {
+        chatResponseEl.innerText = "اكتبي شيئاً بالدردشة أولاً يا لطيفة! ⚠️";
+        chatInputEl.focus();
+        return;
+      }
+      // sanitize user input to avoid XSS
+      const safeUser = escapeHTML(text);
+      const randomReply = chatReplies[Math.floor(Math.random() * chatReplies.length)];
+      chatResponseEl.innerHTML = `<b>أنتِ قلتي:</b> "${safeUser}"<br><b>زمرد:</b> ${escapeHTML(randomReply)}`;
+      chatInputEl.value = "";
+      chatInputEl.focus();
+    }
+
+    // ----- Keyboard / Accessibility helpers -----
+    riddleAnswerEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); checkRiddle(); }
+    });
+    chatInputEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); sendChat(); }
+    });
+
+    checkBtn.addEventListener('click', checkRiddle);
+    nextBtn.addEventListener('click', nextRiddle);
+    sendBtn.addEventListener('click', sendChat);
+
+    // Load first riddle
+    loadRiddle();
+
+    // Expose some functions for testing in dev console (not required)
+    window._riddles = riddles;
+    window._normalizeArabic = normalizeArabic;
+  </script>
 </body>
 </html>
