@@ -2,23 +2,103 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>تطبيقي الأول</title>
+    <title>تطبيقي الأول - لعبة التخمين</title>
     <style>
         body {
             background-color: #0d1117;
             color: #ffffff;
             font-family: Tahoma, sans-serif;
             text-align: center;
-            padding-top: 100px;
+            padding-top: 50px;
+        }
+        .container {
+            background-color: #161b22;
+            display: inline-block;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid #30363d;
         }
         h1 {
             color: #58a6ff;
+            font-size: 24px;
+        }
+        p {
+            color: #8b949e;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            background-color: #0d1117;
+            color: white;
+            text-align: center;
+            width: 70%;
+            margin-bottom: 15px;
+        }
+        .btn {
+            background-color: #238636;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            display: block;
+            margin: 0 auto;
+            width: 80%;
+        }
+        .btn:hover {
+            background-color: #2ea043;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1>مرحباً بكِ في عالم البرمجة! 🚀</h1>
-    <p>هذا أول تطبيق ويب بسيط تم إنشاؤه ورفعه بواسطة GitHub بنجاح.</p>
+
+    <div class="container">
+        <h1>مرحباً بك في عالم البرمجة! 🚀</h1>
+        <p>جرب لعبة تخمين الرقم (من 1 إلى 5):</p>
+        
+        <input type="number" id="userGuess" min="1" max="5" placeholder="ادخل رقماً هنا">
+        <button class="btn" onclick="checkGuess()">تحقق من الرقم</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // اختيار رقم عشوائي سري بين 1 و 5
+        let secretNumber = Math.floor(Math.random() * 5) + 1;
+
+        function checkGuess() {
+            let guess = document.getElementById('userGuess').value;
+            let resultDiv = document.getElementById('result');
+
+            if (guess === "") {
+                resultDiv.style.color = "#f85149";
+                resultDiv.innerHTML = "يرجى إدخال رقم أولاً! ⚠️";
+                return;
+            }
+
+            if (parseInt(guess) === secretNumber) {
+                resultDiv.style.color = "#3fb950";
+                resultDiv.innerHTML = "🎉 كفو! تخمينك صحيح 100%!";
+            } else {
+                resultDiv.style.color = "#f85149";
+                resultDiv.innerHTML = "❌ خطأ، الرقم السري كان: " + secretNumber + " (حاول مرة أخرى)";
+                // تغيير الرقم السري لتجربة جديدة
+                secretNumber = Math.floor(Math.random() * 5) + 1;
+            }
+        }
+    </script>
+
 </body>
 </html>
-
